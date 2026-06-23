@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern Portfolio - HCI Final Project">
+    <title>Modern Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* GAME-LIKE ENHANCEMENTS */
+        
+        /* Neon Text Glow Animation */
+        .greeting {
+            text-shadow: 0 0 10px var(--primary-color),
+                         0 0 20px var(--primary-color),
+                         0 0 40px var(--primary-color);
+            animation: neonPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes neonPulse {
+            0%, 100% { text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color); }
+            50% { text-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color), 0 0 60px var(--secondary-color); }
+        }
+        
+        /* Enhanced Glitch Effect for Name */
+        h1.glitch {
+            position: relative;
+            animation: glitchText 5s infinite;
+        }
+        
+        h1.glitch::before,
+        h1.glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        h1.glitch::before {
+            animation: glitchBefore 3s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+            transform: translate(-2px, -2px);
+            opacity: 0.8;
+        }
+        
+        h1.glitch::after {
+            animation: glitchAfter 2s infinite;
+            clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+            transform: translate(2px, 2px);
+            opacity: 0.8;
+        }
+        
+        @keyframes glitchBefore {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-5px, -5px); }
+            94% { transform: translate(5px, 5px); }
+            96% { transform: translate(-3px, 3px); }
+        }
+        
+        @keyframes glitchAfter {
+            0%, 90%, 100% { transform: translate(0); }
+            91% { transform: translate(5px, 5px); }
+            93% { transform: translate(-5px, -5px); }
+            95% { transform: translate(3px, -3px); }
+        }
+        
+        /* Animated Border for CTA Buttons */
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent, 
+                var(--accent-color), 
+                transparent 30%
+            );
+            animation: rotateBorder 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+        
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes rotateBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Power-up Effect on Skill Cards */
+        .skill-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--primary-color), 
+                var(--secondary-color), 
+                var(--accent-color),
+                var(--primary-color)
+            );
+            background-size: 400%;
+            animation: borderFlow 8s linear infinite;
+            opacity: 0;
+            border-radius: 20px;
+            z-index: -1;
+            transition: opacity 0.3s;
+        }
+        
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes borderFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--primary-color), 
+                var(--secondary-color), 
+                var(--accent-color),
+                var(--primary-color)
+            );
+            background-size: 400%;
+            animation: borderFlow 8s linear infinite;
+            opacity: 0;
+            border-radius: 20px;
+            z-index: -1;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Particle Burst on Project Hover */
+        .project-card::after {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0;
+            transition: all 0.5s;
+            pointer-events: none;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+            animation: particleBurst 0.6s ease-out;
+        }
+        
+        /* Level Up Animation for Skill Icons */
+        .skill-icon {
+            animation: floatIcon 3s ease-in-out infinite;
+            transition: all 0.3s;
+        }
+        
+        .skill-card:hover .skill-icon {
+            transform: scale(1.2) rotate(10deg);
+            filter: drop-shadow(0 0 20px var(--primary-color));
+        }
+        
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Particle Burst on Hover */
+        .skill-card::after {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0;
+            transition: all 0.5s;
+            pointer-events: none;
+        }
+        
+        .skill-card:hover::after {
+            opacity: 1;
+            animation: particleBurst 0.6s ease-out;
+        }
+        
+        @keyframes particleBurst {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+        }
+        
+        /* Gaming Style Progress Bar */
+        .skill-bar {
+            position: relative;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .skill-progress {
+            position: relative;
+            box-shadow: 0 0 10px var(--primary-color);
+            animation: fillBar 1.5s ease-out, progressPulse 2s ease-in-out infinite;
+        }
+        
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.3), 
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        @keyframes progressPulse {
+            0%, 100% { box-shadow: 0 0 10px var(--primary-color); }
+            50% { box-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--secondary-color); }
+        }
+        
+        /* Retro Scanline Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.05) 0px,
+                transparent 1px,
+                transparent 2px,
+                rgba(0, 0, 0, 0.05) 3px
+            );
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.3;
+        }
+        
+        /* Enhanced Particles */
+        .particles div {
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+        
+        /* Pixelated Border Effect */
+        .project-card {
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+            animation: borderPulse 1s ease-in-out infinite;
+        }
+        
+        @keyframes borderPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Contact Form Gaming Style */
+        input:focus, textarea:focus {
+            animation: inputGlow 0.5s ease-out;
+        }
+        
+        @keyframes inputGlow {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+            100% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+        }
+        
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .submit-btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Health Bar Style for About Stats */
+        .stat-item {
+            border-left: 4px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+            animation: statScan 3s infinite;
+        }
+        
+        @keyframes statScan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Arcade Button Effect */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 100%;
+        }
+        
+        /* Back to Top Gaming Effect */
+        .back-to-top {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .back-to-top:hover {
+            animation: spin 0.5s ease-out;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <h2 class="loader-text">Loading<span class="dots"></span></h2>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Main navigation" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">JayFolio</a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="mobile-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="particles" id="particles"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="greeting" style="font-size: 2em;">Hello, I'm</span>
+                <h1 class="glitch" data-text="Jaycee Andal" style="font-size: 5em;">Jaycee Andal</h1>
+                <p class="subtitle typing-text" style="font-size: 1.8em;">Student • Designer • Developer</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="cta-button primary">Get in Touch</a>
+                    <a href="#projects" class="cta-button secondary">View Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About Me</h2>
+            <div class="about-content" data-aos="fade-up" data-aos-delay="200">
+                <div class="about-image">
+                    <img src="images/profile.jpg" alt="Jaycee Andal" class="profile-pic">
+                </div>
+                <div class="about-text">
+                    <p>I'm a Computer Science student specializing in front-end development and user interface design. I focus on building web applications that balance technical functionality with intuitive user experiences.</p>
+                    
+                    <p>My work combines programming skills with design principles to create responsive, accessible interfaces. I'm particularly interested in modern web technologies and how thoughtful design can improve software usability.</p>
+                    
+                    <p>Currently seeking opportunities to apply my technical and design skills in real-world projects while continuing to expand my knowledge in web development and HCI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">My Skills</h2>
+            <div class="skills-grid">
+                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="skill-icon" aria-hidden="true">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Creating user-centered designs with focus on usability and aesthetics</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </article>
+                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="skill-icon" aria-hidden="true">💻</div>
+                    <h3>Web Development</h3>
+                    <p>Building responsive and interactive web interfaces using HTML & CSS</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </article>
+                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="skill-icon" aria-hidden="true">📱</div>
+                    <h3>Responsive Design</h3>
+                    <p>Ensuring seamless experiences across all devices</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 88%"></div>
+                    </div>
+                </article>
+                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="skill-icon" aria-hidden="true">⚡</div>
+                    <h3>JavaScript</h3>
+                    <p>Creating dynamic and interactive web applications</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </article>
+                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="skill-icon" aria-hidden="true">🎯</div>
+                    <h3>Problem Solving</h3>
+                    <p>Analytical thinking and creative solutions to complex challenges</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 82%"></div>
+                    </div>
+                </article>
+                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="skill-icon" aria-hidden="true">🖌️</div>
+                    <h3>Graphic Design</h3>
+                    <p>Visual communication through typography, color, and layout</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 78%"></div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">My Projects</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">A collection of my work showcasing design and development skills</p>
+            
+            <div class="filter-buttons" data-aos="fade-up" data-aos-delay="200">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="ui">UI/UX</button>
+                <button class="filter-btn" data-filter="dev">Development</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card glass" data-category="web ui" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span>🏤</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Barangay E-Serbisyo</h3>
+                        <p>A mobile and web application designed to streamline services and improve transparency between barangay officials and residents.</p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Dart</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card glass" data-category="ui dev" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span>🗺️</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Eco-map</h3>
+                        <p>An Environmental Waste Management and Tracking System. A web-based platform for efficient waste management and community coordination.</p>
+                        <div class="project-tags">
+                            <span class="tag">Php</span>
+                            <span class="tag">Html</span>
+                            <span class="tag">Css</span>
+                            <span class="tag">Xampp</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card glass" data-category="web dev" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span>🎓</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>FLASH-Q: Flashcard Quiz System</h3>
+                        <p>The Flashcard Quiz System is a console-based Java application designed to aid users in learning and self-assessment by creating, managing, and taking quizzes with flashcards. </p>
+                        <div class="project-tags">
+                            <span class="tag">OOP</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">Education</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="project-card glass" data-category="ui web" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span>⚖️</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>JustPeace</h3>
+                        <p>mobile application developed to promote peace, justice, and strong institutions in support of Sustainable Development Goal 16.</p>
+                        <div class="project-tags">
+                            <span class="tag">Mobile App</span>
+                            <span class="tag">Prototype</span>
+                            <span class="tag">Flutter</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 5 -->
+                <article class="project-card glass" data-category="dev" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span>📝</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Resume and Display</h3>
+                        <p>Log In to Edit the Resume and Display It on Public Access Page</p>
+                        <div class="project-tags">
+                            <span class="tag">Php</span>
+                            <span class="tag">Postgre SQL</span>
+                            <span class="tag">Practice</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 6 -->
+                <article class="project-card glass" data-category="web ui" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span>🗂️</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Portfolio Website</h3>
+                        <p>Elegant game-like website design for a portfolio</p>
+                        <div class="project-tags">
+                            <span class="tag">Website</span>
+                            <span class="tag">HCI</span>
+                            <span class="tag">interactive Design</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Let's Work Together</h3>
+                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <span class="icon">📧</span>
+                            <div>
+                                <h4>Email</h4>
+                                <p>jayceeja12@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">📱</span>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+63 970 865 3711</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">📍</span>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Padre Garcia, Batangas, PH</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form glass" id="contactForm" data-aos="fade-left" aria-label="Contact form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            aria-required="true" 
+                            placeholder="Your name"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            aria-required="true" 
+                            placeholder="your.email@example.com"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            required 
+                            aria-required="true" 
+                            placeholder="Your message here..."
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Send Message</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Jaycee Andal. Designed with HCI principles in mind.</p>
+            <div class="social-links">
+                <a href="#" aria-label="GitHub">GitHub</a>
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                <a href="#" aria-label="Twitter">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
