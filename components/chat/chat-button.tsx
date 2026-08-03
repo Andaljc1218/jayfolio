@@ -109,7 +109,7 @@ export default function ChatButton() {
                 <div
                   className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold"
                   style={{
-                    backgroundColor: "var(--theme-text)",
+                    backgroundColor: "var(--theme-accent)",
                     color: "var(--theme-bg)",
                   }}
                 >
@@ -216,7 +216,7 @@ export default function ChatButton() {
                     style={{
                       backgroundColor:
                         msg.role === "user"
-                          ? "var(--theme-text)"
+                          ? "var(--theme-accent)"
                           : isDark
                             ? "#1a1a1a"
                             : "#f5f5f5",
@@ -291,7 +291,7 @@ export default function ChatButton() {
                 onClick={handleSend}
                 className="px-3 py-2 rounded-[var(--btn-radius)] text-sm font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
-                  backgroundColor: "var(--theme-text)",
+                  backgroundColor: "var(--theme-accent)",
                   color: "var(--theme-bg)",
                 }}
                 disabled={!input.trim()}

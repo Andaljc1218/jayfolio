@@ -12,7 +12,10 @@ const ITEMS_PER_CATEGORY = 5;
 
 function SkillItem({ name }: { name: string }) {
   return (
-    <div className="flex items-center gap-2 px-3 py-2 text-sm font-mono rounded-[var(--btn-radius)] transition-all">
+    <div
+      className="flex items-center gap-2 px-3 py-2 text-sm font-mono rounded-[var(--btn-radius)] border border-transparent transition-all hover:border-[var(--theme-accent)] hover:text-[var(--theme-accent)]"
+      style={{ color: "var(--theme-text-secondary)" }}
+    >
       <span
         className="w-4 h-4 flex items-center justify-center"
         style={{ color: "var(--theme-text-secondary)" }}
@@ -147,7 +150,7 @@ export default function SkillsSection() {
                   <button
                     onClick={() => setModalOpen(true)}
                     className="text-sm font-mono transition-colors"
-                    style={{ color: "var(--theme-text-muted)" }}
+                    style={{ color: "var(--theme-accent)" }}
                   >
                     +{category.items.length - ITEMS_PER_CATEGORY} more →
                   </button>

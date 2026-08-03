@@ -1,44 +1,54 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { ThemeProvider } from '@/components/theme-provider';
-import ChatButton from '@/components/chat/chat-button';
-import Nav from '@/components/layout/nav';
-import Footer from '@/components/layout/footer';
-import { Inter } from 'next/font/google';
+import type { Metadata } from "next";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import ChatButton from "@/components/chat/chat-button";
+import Nav from "@/components/layout/nav";
+import Footer from "@/components/layout/footer";
+import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Jaycee Andal — Full Stack Developer',
-    template: '%s | Jaycee Andal',
+    default: "Jaycee Andal — Full Stack Developer",
+    template: "%s | Jaycee Andal",
   },
-  description: 'Portfolio of Jaycee Andal — Computer Science Student and Full Stack Developer',
-  keywords: ['portfolio', 'web development', 'full stack', 'react', 'next.js', 'typescript'],
-  authors: [{ name: 'Jaycee Andal' }],
-  creator: 'Jaycee Andal',
-  metadataBase: new URL('https://jayfolio.vercel.app'),
+  description:
+    "Portfolio of Jaycee Andal — Computer Science Student and Full Stack Developer",
+  keywords: [
+    "portfolio",
+    "web development",
+    "full stack",
+    "react",
+    "next.js",
+    "typescript",
+  ],
+  authors: [{ name: "Jaycee Andal" }],
+  creator: "Jaycee Andal",
+  metadataBase: new URL("https://jayfolio.vercel.app"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://jayfolio.vercel.app',
-    siteName: 'Jaycee Andal',
-    title: 'Jaycee Andal — Full Stack Developer',
-    description: 'Portfolio of Jaycee Andal — Computer Science Student and Full Stack Developer',
-    images: ['/og-image.png'],
+    type: "website",
+    locale: "en_US",
+    url: "https://jayfolio.vercel.app",
+    siteName: "Jaycee Andal",
+    title: "Jaycee Andal — Full Stack Developer",
+    description:
+      "Portfolio of Jaycee Andal — Computer Science Student and Full Stack Developer",
+    images: ["/og-image.png"],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Jaycee Andal — Full Stack Developer',
-    description: 'Portfolio of Jaycee Andal — Computer Science Student and Full Stack Developer',
-    images: ['/og-image.png'],
+    card: "summary_large_image",
+    title: "Jaycee Andal — Full Stack Developer",
+    description:
+      "Portfolio of Jaycee Andal — Computer Science Student and Full Stack Developer",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -46,9 +56,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -59,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable} data-theme="light">
+    <html lang="en" className={inter.variable} data-theme="dark">
       <head>
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       </head>

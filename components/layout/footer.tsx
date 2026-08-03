@@ -75,7 +75,7 @@ export default function Footer() {
           >
             Built with{" "}
             {techStack.map((tech, i) => (
-              <span key={tech} style={{ color: "var(--theme-text-secondary)" }}>
+              <span key={tech} style={{ color: "var(--theme-accent)" }}>
                 {tech}
                 {i < techStack.length - 1 && (
                   <span style={{ color: "var(--theme-text-muted)" }}> · </span>

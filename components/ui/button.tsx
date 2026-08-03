@@ -22,11 +22,11 @@ export interface ButtonProps {
 }
 
 const variantClasses = {
-  primary: "bg-[var(--theme-text)] text-[var(--theme-bg)] hover:shadow-lg",
+  primary: "bg-[var(--theme-accent)] text-[var(--theme-bg)] hover:shadow-lg",
   secondary:
-    "border border-[var(--theme-border)] text-[var(--theme-text)] hover:border-[var(--theme-text-secondary)] hover:text-[var(--theme-text-secondary)] hover:bg-[var(--theme-surface-elevated)]",
+    "border border-[var(--theme-border)] text-[var(--theme-text)] hover:border-[var(--theme-accent)] hover:text-[var(--theme-accent)] hover:bg-[var(--theme-surface-elevated)]",
   ghost:
-    "text-[var(--theme-text-secondary)] hover:text-[var(--theme-text)] hover:bg-[var(--theme-surface-elevated)]",
+    "text-[var(--theme-text-secondary)] hover:text-[var(--theme-accent)] hover:bg-[var(--theme-surface-elevated)]",
 };
 
 const sizeClasses = {

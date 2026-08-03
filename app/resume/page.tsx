@@ -33,7 +33,7 @@ export default function ResumePage() {
               href={site.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-[var(--theme-text)] text-[var(--theme-bg)] rounded-[var(--btn-radius)] transition-all hover:scale-105 hover:shadow-lg"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-[var(--theme-accent)] text-[var(--theme-bg)] rounded-[var(--btn-radius)] transition-all hover:scale-105 hover:shadow-lg"
             >
               <FileText size={16} />
               Download Resume
@@ -42,7 +42,7 @@ export default function ResumePage() {
           <motion.div variants={item}>
             <a
               href="/experience"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium border border-[var(--theme-border)] text-[var(--theme-text)] rounded-[var(--btn-radius)] transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium border border-[var(--theme-border)] text-[var(--theme-text)] rounded-[var(--btn-radius)] transition-all hover:border-[var(--theme-accent)] hover:text-[var(--theme-accent)] hover:bg-[var(--theme-surface-elevated)]"
             >
               <Briefcase size={16} />
               View Experience
@@ -51,7 +51,7 @@ export default function ResumePage() {
           <motion.div variants={item}>
             <a
               href="/education"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium border border-[var(--theme-border)] text-[var(--theme-text)] rounded-[var(--btn-radius)] transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium border border-[var(--theme-border)] text-[var(--theme-text)] rounded-[var(--btn-radius)] transition-all hover:border-[var(--theme-accent)] hover:text-[var(--theme-accent)] hover:bg-[var(--theme-surface-elevated)]"
             >
               <GraduationCap size={16} />
               View Education
@@ -71,10 +71,7 @@ export default function ResumePage() {
               className="text-xl font-semibold mb-6 flex items-center gap-2"
               style={{ color: "var(--theme-text)" }}
             >
-              <Briefcase
-                size={18}
-                style={{ color: "var(--theme-text-secondary)" }}
-              />
+              <Briefcase size={18} style={{ color: "var(--theme-accent)" }} />
               Work Experience
             </h2>
             <motion.div variants={container} className="space-y-8">
@@ -130,7 +127,7 @@ export default function ResumePage() {
             >
               <GraduationCap
                 size={18}
-                style={{ color: "var(--theme-text-secondary)" }}
+                style={{ color: "var(--theme-accent)" }}
               />
               Education
             </h2>

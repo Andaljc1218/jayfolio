@@ -72,12 +72,10 @@ export default function Nav() {
           backgroundColor:
             scrolled || isExternal
               ? isDark
-                ? "rgba(10, 10, 10, 0.8)"
-                : "rgba(246, 246, 244, 0.8)"
+                ? "rgba(13, 15, 18, 0.9)"
+                : "rgba(246, 246, 244, 0.9)"
               : "transparent",
-          borderColor: isDark
-            ? "rgba(34, 34, 34, 0.3)"
-            : "rgba(224, 224, 220, 0.5)",
+          borderColor: isDark ? "#2a2f36" : "#e0e0dc",
           backdropFilter: scrolled || isExternal ? "blur(12px)" : "none",
         }}
       >
@@ -85,7 +83,7 @@ export default function Nav() {
           <Link
             href="/"
             className="text-sm font-medium tracking-tight transition-colors"
-            style={{ color: isDark ? "#fafafa" : "#181818" }}
+            style={{ color: isDark ? "#f0f0f0" : "#1a1a1a" }}
           >
             Jaycee Andal
           </Link>
@@ -103,11 +101,11 @@ export default function Nav() {
                     style={{
                       color: isActive
                         ? isDark
-                          ? "#fafafa"
-                          : "#181818"
+                          ? "#3b82f6"
+                          : "#2563eb"
                         : isDark
-                          ? "#a0a0a0"
-                          : "#525252",
+                          ? "#8b93a7"
+                          : "#6b7280",
                     }}
                   >
                     {link.label}
@@ -116,7 +114,9 @@ export default function Nav() {
                     <motion.span
                       layoutId="active-underline-nav"
                       className="absolute bottom-[-6px] left-0 right-0 h-0.5"
-                      style={{ backgroundColor: "var(--theme-text)" }}
+                      style={{
+                        backgroundColor: isDark ? "#3b82f6" : "#2563eb",
+                      }}
                     />
                   )}
                 </li>
@@ -135,7 +135,7 @@ export default function Nav() {
               className="md:hidden p-2"
               onClick={() => setIsOpen(true)}
               aria-label="Open menu"
-              style={{ color: isDark ? "#fafafa" : "#181818" }}
+              style={{ color: isDark ? "#f0f0f0" : "#1a1a1a" }}
             >
               <Menu size={20} />
             </button>
@@ -162,7 +162,7 @@ export default function Nav() {
                 onClick={() => setIsOpen(false)}
                 className="self-end p-2 mb-8"
                 aria-label="Close menu"
-                style={{ color: isDark ? "#fafafa" : "#181818" }}
+                style={{ color: isDark ? "#f0f0f0" : "#1a1a1a" }}
               >
                 <X size={24} />
               </button>
@@ -178,7 +178,7 @@ export default function Nav() {
                       href={link.href}
                       onClick={() => setIsOpen(false)}
                       className="text-2xl transition-colors"
-                      style={{ color: isDark ? "#fafafa" : "#181818" }}
+                      style={{ color: isDark ? "#f0f0f0" : "#1a1a1a" }}
                     >
                       {link.label}
                     </Link>

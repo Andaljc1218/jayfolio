@@ -118,7 +118,7 @@ export default function ProjectCard({
             >
               <Link
                 href={href}
-                className="text-xs font-medium px-3 py-1.5 border border-[var(--theme-border)] rounded-[var(--btn-radius)] text-[var(--theme-text-secondary)] hover:bg-[var(--theme-text)] hover:text-[var(--theme-bg)] hover:border-[var(--theme-text)] transition-all"
+                className="text-xs font-medium px-3 py-1.5 border border-[var(--theme-border)] rounded-[var(--btn-radius)] text-[var(--theme-text-secondary)] hover:bg-[var(--theme-accent)] hover:text-[var(--theme-bg)] hover:border-[var(--theme-accent)] transition-all"
               >
                 Case Study
               </Link>
@@ -127,7 +127,7 @@ export default function ProjectCard({
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-medium px-3 py-1.5 border border-[var(--theme-border)] rounded-[var(--btn-radius)] text-[var(--theme-text-secondary)] hover:bg-[var(--theme-text)] hover:text-[var(--theme-bg)] hover:border-[var(--theme-text)] transition-all"
+                  className="text-xs font-medium px-3 py-1.5 border border-[var(--theme-border)] rounded-[var(--btn-radius)] text-[var(--theme-text-secondary)] hover:bg-[var(--theme-accent)] hover:text-[var(--theme-bg)] hover:border-[var(--theme-accent)] transition-all"
                   onClick={(e) => e.stopPropagation()}
                 >
                   GitHub
@@ -138,7 +138,7 @@ export default function ProjectCard({
                   href={demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-medium px-3 py-1.5 border border-[var(--theme-border)] rounded-[var(--btn-radius)] text-[var(--theme-text-secondary)] hover:bg-[var(--theme-text)] hover:text-[var(--theme-bg)] hover:border-[var(--theme-text)] transition-all"
+                  className="text-xs font-medium px-3 py-1.5 border border-[var(--theme-border)] rounded-[var(--btn-radius)] text-[var(--theme-text-secondary)] hover:bg-[var(--theme-accent)] hover:text-[var(--theme-bg)] hover:border-[var(--theme-accent)] transition-all"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Live Demo
