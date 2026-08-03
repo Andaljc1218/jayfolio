@@ -12,12 +12,21 @@ export default function ResumePage() {
     <main className="min-h-screen pt-16">
       <section className="py-24 md:py-32 px-6 md:px-8">
         <div className="max-w-prose mx-auto">
-          <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 tracking-tight mb-4">
+          <h1
+            className="text-4xl md:text-5xl font-semibold tracking-tight mb-4"
+            style={{ color: 'var(--theme-text)' }}
+          >
             Resume
           </h1>
-          <div className="border-t border-gray-200 mt-4 mb-12" />
+          <div
+            className="border-t mt-4 mb-12"
+            style={{ borderColor: 'var(--theme-border)' }}
+          />
 
-          <p className="text-base text-gray-500 mb-8">
+          <p
+            className="text-base mb-8"
+            style={{ color: 'var(--theme-text-secondary)' }}
+          >
             Download my resume or view my experience and education pages for more details.
           </p>
 
@@ -26,20 +35,32 @@ export default function ResumePage() {
               href={site.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-lg transition-colors"
+              style={{
+                backgroundColor: 'var(--theme-accent)',
+                color: 'var(--theme-bg)',
+              }}
             >
               <ArrowUpRight size={16} />
               Download Resume
             </Link>
             <Link
               href="/experience"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:border-gray-400 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-lg transition-colors"
+              style={{
+                borderColor: 'var(--theme-border)',
+                color: 'var(--theme-text-secondary)',
+              }}
             >
               View Experience
             </Link>
             <Link
               href="/education"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:border-gray-400 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-lg transition-colors"
+              style={{
+                borderColor: 'var(--theme-border)',
+                color: 'var(--theme-text-secondary)',
+              }}
             >
               View Education
             </Link>

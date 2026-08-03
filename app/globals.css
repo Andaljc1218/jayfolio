@@ -18,6 +18,49 @@
 
   --max-width-prose: 768px;
   --max-width-project: 680px;
+
+  --color-bg: var(--theme-bg);
+  --color-surface: var(--theme-surface);
+  --color-text: var(--theme-text);
+  --color-text-secondary: var(--theme-text-secondary);
+  --color-border: var(--theme-border);
+  --color-accent: var(--theme-accent);
+  --color-accent-hover: var(--theme-accent-hover);
+  --color-input-bg: var(--theme-input-bg);
+  --color-input-border: var(--theme-input-border);
+  --color-input-text: var(--theme-input-text);
+  --color-input-placeholder: var(--theme-input-placeholder);
+}
+
+/* Theme tokens — Light (default) */
+:root,
+[data-theme="light"] {
+  --theme-bg: #fafafa;
+  --theme-surface: #ffffff;
+  --theme-text: #171717;
+  --theme-text-secondary: #737373;
+  --theme-border: #e5e5e5;
+  --theme-accent: #171717;
+  --theme-accent-hover: #404040;
+  --theme-input-bg: #ffffff;
+  --theme-input-border: #e5e5e5;
+  --theme-input-text: #171717;
+  --theme-input-placeholder: #a3a3a3;
+}
+
+/* Theme tokens — Dark */
+[data-theme="dark"] {
+  --theme-bg: #0a0a0a;
+  --theme-surface: #171717;
+  --theme-text: #fafafa;
+  --theme-text-secondary: #a3a3a3;
+  --theme-border: #262626;
+  --theme-accent: #fafafa;
+  --theme-accent-hover: #d4d4d4;
+  --theme-input-bg: #171717;
+  --theme-input-border: #262626;
+  --theme-input-text: #fafafa;
+  --theme-input-placeholder: #737373;
 }
 
 /* Base */
@@ -27,21 +70,22 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-gray-900);
-  background-color: var(--color-gray-50);
+  color: var(--theme-text);
+  background-color: var(--theme-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 /* Selection */
 ::selection {
-  background-color: var(--color-gray-900);
-  color: var(--color-gray-50);
+  background-color: var(--theme-accent);
+  color: var(--theme-bg);
 }
 
 /* Focus visible */
 :focus-visible {
-  outline: 2px solid var(--color-gray-900);
+  outline: 2px solid var(--theme-accent);
   outline-offset: 2px;
 }
 
@@ -50,8 +94,8 @@ body {
   position: absolute;
   top: -40px;
   left: 0;
-  background: var(--color-gray-900);
-  color: var(--color-gray-50);
+  background: var(--theme-accent);
+  color: var(--theme-bg);
   padding: 8px 16px;
   z-index: 100;
   transition: top 0.2s;

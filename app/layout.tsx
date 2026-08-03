@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { ThemeProvider } from '@/components/theme-provider';
+import ChatButton from '@/components/chat/chat-button';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -55,15 +57,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={inter.variable} data-theme="light">
       <head>
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       </head>
-      <body className="min-h-screen bg-gray-50 text-gray-900">
+      <body className="min-h-screen" style={{ backgroundColor: 'var(--theme-bg)', color: 'var(--theme-text)' }}>
         <a href="#main" className="skip-to-content">
           Skip to content
         </a>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
+        <ChatButton />
       </body>
     </html>
   );

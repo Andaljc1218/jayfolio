@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTheme } from '@/components/theme-provider';
 
 const experiences = [
   {
@@ -17,14 +18,23 @@ const experiences = [
 ];
 
 export default function ExperiencePage() {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
+
   return (
     <main className="min-h-screen pt-16">
       <section className="py-24 md:py-32 px-6 md:px-8">
         <div className="max-w-prose mx-auto">
-          <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 tracking-tight mb-4">
+          <h1
+            className="text-4xl md:text-5xl font-semibold tracking-tight mb-4"
+            style={{ color: isDark ? '#fafafa' : '#171717' }}
+          >
             Experience
           </h1>
-          <div className="border-t border-gray-200 mt-4 mb-12" />
+          <div
+            className="border-t mt-4 mb-12"
+            style={{ borderColor: isDark ? 'rgba(38, 38, 38, 0.5)' : 'rgba(229, 229, 229, 0.5)' }}
+          />
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -36,16 +46,37 @@ export default function ExperiencePage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="grid md:grid-cols-[8rem_1fr] gap-8"
               >
-                <div className="text-sm text-gray-400 font-mono">{exp.period}</div>
+                <div
+                  className="text-sm font-mono"
+                  style={{ color: isDark ? '#525252' : '#a3a3a3' }}
+                >
+                  {exp.period}
+                </div>
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900">{exp.title}</h3>
-                  <p className="text-base text-gray-500 mt-1">{exp.company}</p>
-                  <p className="text-sm text-gray-400 mt-0.5">{exp.location}</p>
+                  <h3
+                    className="text-lg font-medium"
+                    style={{ color: isDark ? '#fafafa' : '#171717' }}
+                  >
+                    {exp.title}
+                  </h3>
+                  <p
+                    className="text-base mt-1"
+                    style={{ color: isDark ? '#a3a3a3' : '#737373' }}
+                  >
+                    {exp.company}
+                  </p>
+                  <p
+                    className="text-sm mt-0.5"
+                    style={{ color: isDark ? '#525252' : '#a3a3a3' }}
+                  >
+                    {exp.location}
+                  </p>
                   <ul className="mt-4 space-y-2">
                     {exp.responsibilities.map((item) => (
                       <li
                         key={item}
-                        className="text-sm text-gray-600 list-disc list-inside"
+                        className="text-sm list-disc list-inside"
+                        style={{ color: isDark ? '#a3a3a3' : '#737373' }}
                       >
                         {item}
                       </li>

@@ -91,21 +91,34 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <div className="max-w-project mx-auto">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900 transition-colors mb-8"
+            className="inline-flex items-center gap-1 text-sm transition-colors mb-8"
+            style={{ color: 'var(--theme-text-secondary)' }}
           >
             ← Back to Projects
           </Link>
 
           <header className="mb-12">
-            <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 tracking-tight mb-4">
+            <h1
+              className="text-4xl md:text-5xl font-semibold tracking-tight mb-4"
+              style={{ color: 'var(--theme-text)' }}
+            >
               {project.title}
             </h1>
-            <p className="text-lg text-gray-500 mb-4">{project.description}</p>
+            <p
+              className="text-lg mb-4"
+              style={{ color: 'var(--theme-text-secondary)' }}
+            >
+              {project.description}
+            </p>
             <div className="flex flex-wrap gap-2">
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="inline-flex items-center px-3 py-1 border border-gray-200 text-xs font-medium text-gray-600 rounded-full"
+                  className="inline-flex items-center px-3 py-1 border text-xs font-medium rounded-full"
+                  style={{
+                    borderColor: 'var(--theme-border)',
+                    color: 'var(--theme-text-secondary)',
+                  }}
                 >
                   {t}
                 </span>
@@ -113,19 +126,23 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           </header>
 
-          <div className="border-t border-gray-200 mb-12" />
+          <div
+            className="border-t mb-12"
+            style={{ borderColor: 'var(--theme-border)' }}
+          />
 
-          <div className="prose prose-gray max-w-none">
+          <div className="prose prose-gray max-w-none" style={{ color: 'var(--theme-text-secondary)' }}>
             <MDXRemote source={mdxSource} />
           </div>
 
-          <footer className="mt-16 pt-8 border-t border-gray-200 flex flex-wrap gap-6">
+          <footer className="mt-16 pt-8 border-t flex flex-wrap gap-6" style={{ borderColor: 'var(--theme-border)' }}>
             {project.github && (
               <Link
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 underline underline-offset-4 transition-colors"
+                className="inline-flex items-center gap-2 text-sm transition-colors"
+                style={{ color: 'var(--theme-text-secondary)' }}
               >
                 GitHub Repository
                 <ArrowUpRight size={14} />
@@ -136,7 +153,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 underline underline-offset-4 transition-colors"
+                className="inline-flex items-center gap-2 text-sm transition-colors"
+                style={{ color: 'var(--theme-text-secondary)' }}
               >
                 Live Demo
                 <ArrowUpRight size={14} />
