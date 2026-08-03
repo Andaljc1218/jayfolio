@@ -101,8 +101,8 @@ export default function Nav() {
                     style={{
                       color: isActive
                         ? isDark
-                          ? "#3b82f6"
-                          : "#2563eb"
+                          ? "#d1d5db"
+                          : "#6b7280"
                         : isDark
                           ? "#8b93a7"
                           : "#6b7280",
@@ -115,7 +115,7 @@ export default function Nav() {
                       layoutId="active-underline-nav"
                       className="absolute bottom-[-6px] left-0 right-0 h-0.5"
                       style={{
-                        backgroundColor: isDark ? "#3b82f6" : "#2563eb",
+                        backgroundColor: isDark ? "#d1d5db" : "#6b7280",
                       }}
                     />
                   )}

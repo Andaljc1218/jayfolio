@@ -22,9 +22,9 @@ export function Timeline({ items }: TimelineProps) {
   const isDark = resolvedTheme === "dark";
 
   const lineColor = isDark
-    ? "rgba(59, 130, 246, 0.2)"
-    : "rgba(37, 99, 235, 0.15)";
-  const dotColor = isDark ? "#3b82f6" : "#2563eb";
+    ? "rgba(209, 213, 219, 0.2)"
+    : "rgba(107, 114, 128, 0.15)";
+  const dotColor = isDark ? "#d1d5db" : "#6b7280";
   const textColor = isDark ? "#f0f0f0" : "#1a1a1a";
   const secondaryColor = isDark ? "#8b93a7" : "#6b7280";
   const mutedColor = isDark ? "#6b7280" : "#9ca3af";

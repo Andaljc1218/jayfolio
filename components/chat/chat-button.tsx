@@ -24,7 +24,7 @@ export default function ChatButton() {
   const textColor = isDark ? "#fafafa" : "#181818";
   const secondaryColor = isDark ? "#a0a0a0" : "#525252";
   const inputBg = isDark ? "#171111" : "#fafafa";
-  const accentColor = isDark ? "#3b82f6" : "#2563eb";
+  const accentColor = isDark ? "#d1d5db" : "#6b7280";
 
   useEffect(() => {
     if (messagesEndRef.current) {
