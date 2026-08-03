@@ -266,59 +266,50 @@ document.querySelectorAll('[data-aos]').forEach(el => {
 });
 
 // ===========================================
-// PROJECTS PAGE - HORIZONTAL SCROLL BUTTONS
+// SKILLS HORIZONTAL SCROLL + DRAG
 // ===========================================
 
-const projectsContainer = document.getElementById('projectsContainer');
-const scrollLeftBtn = document.getElementById('scrollLeft');
-const scrollRightBtn = document.getElementById('scrollRight');
+function initHorizontalScroll(trackId, leftBtnId, rightBtnId, scrollAmount = 280) {
+    const track = document.getElementById(trackId);
+    const leftBtn = document.getElementById(leftBtnId);
+    const rightBtn = document.getElementById(rightBtnId);
+    if (!track) return;
 
-if (projectsContainer && scrollLeftBtn && scrollRightBtn) {
-    const scrollAmount = 400;
-    
-    // Scroll left
-    scrollLeftBtn.addEventListener('click', () => {
-        projectsContainer.scrollBy({
-            left: -scrollAmount,
-            behavior: 'smooth'
-        });
+    // Arrow buttons
+    if (leftBtn) leftBtn.addEventListener('click', () => track.scrollBy({ left: -scrollAmount, behavior: 'smooth' }));
+    if (rightBtn) rightBtn.addEventListener('click', () => track.scrollBy({ left: scrollAmount, behavior: 'smooth' }));
+
+    // Drag to scroll
+    let isDown = false, startX, scrollStart;
+    track.addEventListener('mousedown', e => {
+        isDown = true;
+        startX = e.pageX - track.offsetLeft;
+        scrollStart = track.scrollLeft;
+        track.style.userSelect = 'none';
     });
-    
-    // Scroll right
-    scrollRightBtn.addEventListener('click', () => {
-        projectsContainer.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-        });
+    track.addEventListener('mouseleave', () => { isDown = false; });
+    track.addEventListener('mouseup', () => { isDown = false; track.style.userSelect = ''; });
+    track.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - track.offsetLeft;
+        track.scrollLeft = scrollStart - (x - startX);
     });
-    
-    // Update button states based on scroll position
-    function updateScrollButtons() {
-        const scrollLeft = projectsContainer.scrollLeft;
-        const maxScroll = projectsContainer.scrollWidth - projectsContainer.clientWidth;
-        
-        scrollLeftBtn.disabled = scrollLeft <= 0;
-        scrollRightBtn.disabled = scrollLeft >= maxScroll - 5;
-    }
-    
-    // Initial check
-    updateScrollButtons();
-    
-    // Update on scroll
-    projectsContainer.addEventListener('scroll', updateScrollButtons);
-    
-    // Update on window resize
-    window.addEventListener('resize', updateScrollButtons);
-    
-    // Keyboard navigation
-    projectsContainer.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            scrollLeftBtn.click();
-        } else if (e.key === 'ArrowRight') {
-            scrollRightBtn.click();
-        }
-    });
+
+    // Touch support
+    let touchStartX, touchScrollStart;
+    track.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].pageX;
+        touchScrollStart = track.scrollLeft;
+    }, { passive: true });
+    track.addEventListener('touchmove', e => {
+        const dx = touchStartX - e.touches[0].pageX;
+        track.scrollLeft = touchScrollStart + dx;
+    }, { passive: true });
 }
+
+initHorizontalScroll('skillsTrack', 'skillsLeft', 'skillsRight', 260);
+initHorizontalScroll('projectsTrack', 'projectsLeft', 'projectsRight', 360);
 
 // ===========================================
 // PROJECTS FILTER
@@ -326,44 +317,29 @@ if (projectsContainer && scrollLeftBtn && scrollRightBtn) {
 
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
+const projectsTrack = document.getElementById('projectsTrack');
 
 if (filterButtons.length > 0 && projectCards.length > 0) {
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
             button.classList.add('active');
             
             const filterValue = button.getAttribute('data-filter');
             
-            // Filter project cards with animation
-            projectCards.forEach((card, index) => {
-                setTimeout(() => {
-                    if (filterValue === 'all') {
-                        card.classList.remove('hidden');
-                        card.style.display = 'flex';
-                    } else {
-                        const categories = card.getAttribute('data-category');
-                        if (categories && categories.includes(filterValue)) {
-                            card.classList.remove('hidden');
-                            card.style.display = 'flex';
-                        } else {
-                            card.classList.add('hidden');
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300);
-                        }
-                    }
-                }, index * 50);
-            });
-            
-            // Reset scroll position after filter
-            setTimeout(() => {
-                if (projectsContainer) {
-                    projectsContainer.scrollTo({ left: 0, behavior: 'smooth' });
+            projectCards.forEach(card => {
+                if (filterValue === 'all') {
+                    card.style.display = 'flex';
+                } else {
+                    const categories = card.getAttribute('data-category');
+                    card.style.display = (categories && categories.includes(filterValue)) ? 'flex' : 'none';
                 }
-            }, 400);
+            });
+
+            // Reset scroll
+            if (projectsTrack) {
+                projectsTrack.scrollTo({ left: 0, behavior: 'smooth' });
+            }
         });
     });
 }

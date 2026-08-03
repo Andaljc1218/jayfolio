@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://jayfolio.vercel.app/sitemap.xml
+Image: https://jayfolio.vercel.app/og-image.png
+
+# Crawl-delay helps prevent overloading the server
+Crawl-delay: 1

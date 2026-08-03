@@ -485,8 +485,11 @@
     <section id="skills">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">My Skills</h2>
-            <div class="skills-grid">
-                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="100">
+        </div>
+        <div class="skills-marquee-wrapper">
+            <button class="skills-arrow left" id="skillsLeft" aria-label="Scroll skills left">&#8249;</button>
+            <div class="skills-track" id="skillsTrack">
+                <article class="skill-card glass">
                     <div class="skill-icon" aria-hidden="true">🎨</div>
                     <h3>UI/UX Design</h3>
                     <p>Creating user-centered designs with focus on usability and aesthetics</p>
@@ -494,7 +497,7 @@
                         <div class="skill-progress" style="width: 85%"></div>
                     </div>
                 </article>
-                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="200">
+                <article class="skill-card glass">
                     <div class="skill-icon" aria-hidden="true">💻</div>
                     <h3>Web Development</h3>
                     <p>Building responsive and interactive web interfaces using HTML & CSS</p>
@@ -502,7 +505,7 @@
                         <div class="skill-progress" style="width: 90%"></div>
                     </div>
                 </article>
-                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="400">
+                <article class="skill-card glass">
                     <div class="skill-icon" aria-hidden="true">📱</div>
                     <h3>Responsive Design</h3>
                     <p>Ensuring seamless experiences across all devices</p>
@@ -510,7 +513,7 @@
                         <div class="skill-progress" style="width: 88%"></div>
                     </div>
                 </article>
-                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="500">
+                <article class="skill-card glass">
                     <div class="skill-icon" aria-hidden="true">⚡</div>
                     <h3>JavaScript</h3>
                     <p>Creating dynamic and interactive web applications</p>
@@ -518,7 +521,7 @@
                         <div class="skill-progress" style="width: 75%"></div>
                     </div>
                 </article>
-                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="600">
+                <article class="skill-card glass">
                     <div class="skill-icon" aria-hidden="true">🎯</div>
                     <h3>Problem Solving</h3>
                     <p>Analytical thinking and creative solutions to complex challenges</p>
@@ -526,7 +529,7 @@
                         <div class="skill-progress" style="width: 82%"></div>
                     </div>
                 </article>
-                <article class="skill-card glass" data-aos="zoom-in" data-aos-delay="700">
+                <article class="skill-card glass">
                     <div class="skill-icon" aria-hidden="true">🖌️</div>
                     <h3>Graphic Design</h3>
                     <p>Visual communication through typography, color, and layout</p>
@@ -534,7 +537,32 @@
                         <div class="skill-progress" style="width: 78%"></div>
                     </div>
                 </article>
+                <article class="skill-card glass">
+                    <div class="skill-icon" aria-hidden="true">☕</div>
+                    <h3>Java</h3>
+                    <p>Object-oriented programming and console application development</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%"></div>
+                    </div>
+                </article>
+                <article class="skill-card glass">
+                    <div class="skill-icon" aria-hidden="true">🐘</div>
+                    <h3>PHP & SQL</h3>
+                    <p>Server-side scripting and database-driven web applications</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 72%"></div>
+                    </div>
+                </article>
+                <article class="skill-card glass">
+                    <div class="skill-icon" aria-hidden="true">🦋</div>
+                    <h3>Flutter / Dart</h3>
+                    <p>Cross-platform mobile app development for iOS and Android</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 68%"></div>
+                    </div>
+                </article>
             </div>
+            <button class="skills-arrow right" id="skillsRight" aria-label="Scroll skills right">&#8250;</button>
         </div>
     </section>
 
@@ -543,21 +571,23 @@
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">My Projects</h2>
             <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">A collection of my work showcasing design and development skills</p>
-            
+
             <div class="filter-buttons" data-aos="fade-up" data-aos-delay="200">
                 <button class="filter-btn active" data-filter="all">All Projects</button>
                 <button class="filter-btn" data-filter="web">Web Design</button>
                 <button class="filter-btn" data-filter="ui">UI/UX</button>
                 <button class="filter-btn" data-filter="dev">Development</button>
             </div>
+        </div>
 
-            <div class="projects-grid">
+        <div class="projects-marquee-wrapper">
+            <button class="projects-arrow left" id="projectsLeft" aria-label="Scroll projects left">&#8249;</button>
+            <div class="projects-track" id="projectsTrack">
+
                 <!-- Project 1 -->
-                <article class="project-card glass" data-category="web ui" data-aos="zoom-in" data-aos-delay="100">
+                <article class="project-card glass" data-category="web ui">
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <span>🏤</span>
-                        </div>
+                        <div class="project-placeholder"><span>🏤</span></div>
                     </div>
                     <div class="project-content">
                         <h3>Barangay E-Serbisyo</h3>
@@ -567,100 +597,116 @@
                             <span class="tag">Dart</span>
                             <span class="tag">Firebase</span>
                         </div>
+                        <a href="https://github.com/Andaljc1218" target="_blank" rel="noopener" class="project-github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            View on GitHub
+                        </a>
                     </div>
                 </article>
 
                 <!-- Project 2 -->
-                <article class="project-card glass" data-category="ui dev" data-aos="zoom-in" data-aos-delay="200">
+                <article class="project-card glass" data-category="ui dev">
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <span>🗺️</span>
-                        </div>
+                        <div class="project-placeholder"><span>🗺️</span></div>
                     </div>
                     <div class="project-content">
                         <h3>Eco-map</h3>
                         <p>An Environmental Waste Management and Tracking System. A web-based platform for efficient waste management and community coordination.</p>
                         <div class="project-tags">
-                            <span class="tag">Php</span>
-                            <span class="tag">Html</span>
-                            <span class="tag">Css</span>
-                            <span class="tag">Xampp</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">XAMPP</span>
                         </div>
+                        <a href="https://github.com/Andaljc1218" target="_blank" rel="noopener" class="project-github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            View on GitHub
+                        </a>
                     </div>
                 </article>
 
                 <!-- Project 3 -->
-                <article class="project-card glass" data-category="web dev" data-aos="zoom-in" data-aos-delay="300">
+                <article class="project-card glass" data-category="web dev">
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <span>🎓</span>
-                        </div>
+                        <div class="project-placeholder"><span>🎓</span></div>
                     </div>
                     <div class="project-content">
                         <h3>FLASH-Q: Flashcard Quiz System</h3>
-                        <p>The Flashcard Quiz System is a console-based Java application designed to aid users in learning and self-assessment by creating, managing, and taking quizzes with flashcards. </p>
+                        <p>A console-based Java application designed to aid users in learning and self-assessment by creating, managing, and taking quizzes with flashcards.</p>
                         <div class="project-tags">
                             <span class="tag">OOP</span>
                             <span class="tag">Java</span>
                             <span class="tag">Education</span>
                         </div>
+                        <a href="https://github.com/Andaljc1218" target="_blank" rel="noopener" class="project-github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            View on GitHub
+                        </a>
                     </div>
                 </article>
 
                 <!-- Project 4 -->
-                <article class="project-card glass" data-category="ui web" data-aos="zoom-in" data-aos-delay="400">
+                <article class="project-card glass" data-category="ui web">
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <span>⚖️</span>
-                        </div>
+                        <div class="project-placeholder"><span>⚖️</span></div>
                     </div>
                     <div class="project-content">
                         <h3>JustPeace</h3>
-                        <p>mobile application developed to promote peace, justice, and strong institutions in support of Sustainable Development Goal 16.</p>
+                        <p>A mobile application developed to promote peace, justice, and strong institutions in support of Sustainable Development Goal 16.</p>
                         <div class="project-tags">
                             <span class="tag">Mobile App</span>
                             <span class="tag">Prototype</span>
                             <span class="tag">Flutter</span>
                         </div>
+                        <a href="https://github.com/Andaljc1218" target="_blank" rel="noopener" class="project-github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            View on GitHub
+                        </a>
                     </div>
                 </article>
 
                 <!-- Project 5 -->
-                <article class="project-card glass" data-category="dev" data-aos="zoom-in" data-aos-delay="500">
+                <article class="project-card glass" data-category="dev">
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <span>📝</span>
-                        </div>
+                        <div class="project-placeholder"><span>📝</span></div>
                     </div>
                     <div class="project-content">
                         <h3>Resume and Display</h3>
-                        <p>Log In to Edit the Resume and Display It on Public Access Page</p>
+                        <p>Log in to edit a resume and display it on a public-access page. Combines authentication with a clean public-facing display.</p>
                         <div class="project-tags">
-                            <span class="tag">Php</span>
-                            <span class="tag">Postgre SQL</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">PostgreSQL</span>
                             <span class="tag">Practice</span>
                         </div>
+                        <a href="https://github.com/Andaljc1218" target="_blank" rel="noopener" class="project-github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            View on GitHub
+                        </a>
                     </div>
                 </article>
 
                 <!-- Project 6 -->
-                <article class="project-card glass" data-category="web ui" data-aos="zoom-in" data-aos-delay="600">
+                <article class="project-card glass" data-category="web ui">
                     <div class="project-image">
-                        <div class="project-placeholder">
-                            <span>🗂️</span>
-                        </div>
+                        <div class="project-placeholder"><span>🗂️</span></div>
                     </div>
                     <div class="project-content">
                         <h3>Portfolio Website</h3>
-                        <p>Elegant game-like website design for a portfolio</p>
+                        <p>Elegant game-like website design for a portfolio, built with HCI principles and interactive animations.</p>
                         <div class="project-tags">
                             <span class="tag">Website</span>
                             <span class="tag">HCI</span>
-                            <span class="tag">interactive Design</span>
+                            <span class="tag">Interactive Design</span>
                         </div>
+                        <a href="https://github.com/Andaljc1218/jayfolio" target="_blank" rel="noopener" class="project-github-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            View on GitHub
+                        </a>
                     </div>
                 </article>
+
             </div>
+            <button class="projects-arrow right" id="projectsRight" aria-label="Scroll projects right">&#8250;</button>
         </div>
     </section>
 

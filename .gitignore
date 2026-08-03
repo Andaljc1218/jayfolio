@@ -1,0 +1,6 @@
+node_modules
+.next
+.archive
+archive
+docs/activity-log.md
+public/resume.pdf
