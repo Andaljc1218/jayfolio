@@ -1,0 +1,84 @@
+---
+title: "JayFolio V3"
+description: "A premium portfolio redesign with cinematic motion, dual-theme system, and award-winning UI/UX."
+tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"]
+year: "2026"
+status: "Ongoing"
+github: "https://github.com/Andaljc1218/jayfolio"
+demo: "https://jayfolio.vercel.app"
+---
+
+## Overview
+
+JayFolio V3 is a complete portfolio redesign emphasizing cinematic motion, a dual-theme system, and award-winning UI/UX. Built with Next.js 15, TypeScript, and Framer Motion, it features smooth page transitions, hover interactions, and a premium design aesthetic.
+
+## Problem
+
+The previous portfolio version felt too minimalist and generic. While clean, it lost its impact and personality. It lacked visual drama, memorable interactions, and a premium feel. The profile image was ignored, and animations were nearly absent.
+
+## Solution
+
+A complete rebuild with a strong visual hierarchy, cinematic motion, and an immersive single-scroll experience. The redesign maintains minimalism while adding stronger visual hierarchy, memorable interactions, breathings room, cinematic motion, and a polished developer aesthetic.
+
+## Key Features
+
+- **Dual Theme System** — Smooth light/dark theme with blue-accent color palette
+- **Cinematic Motion** — Staggered entrance animations, hover interactions, and scroll reveals
+- **Profile Showcase** — Large profile image with floating animation and grayscale-to-color reveal
+- **Project Cards** — Interactive grid with lift, border glow, and image zoom effects
+- **Timeline Layouts** — Animated vertical timelines for experience and education
+- **Skills Marquee** — Infinite scrolling with alternating directions and hover pause
+- **AI Chat Panel** — Floating chatbot with suggested questions and themed interface
+
+## System Architecture
+
+```
+┌──────────────────────────────────────────┐
+│          Frontend (Next.js 15)           │
+│  App Router | Server Components          │
+├──────────────────────────────────────────┤
+│  Framer Motion | Tailwind CSS v4         │
+│  MDX for project content                 │
+├──────────────────────────────────────────┤
+│  Theme: CSS Custom Properties            │
+│  Data: lib/data.ts, content/projects/    │
+└──────────────────────────────────────────┘
+```
+
+## Technology Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Motion:** Framer Motion
+- **Content:** MDX for project case studies
+- **Deployment:** Vercel
+
+## Development Process
+
+Followed a two-stage workflow: first created a complete design specification (wireframes, component tree, spacing system, animation plan, color tokens, and responsive layouts), then generated the code. Used feature-branch development with incremental commits.
+
+## Challenges
+
+Balancing minimalism with personality and motion. Ensuring animations enhance without becoming distracting. Maintaining performance with rich interactions. Creating a consistent design system across all sections.
+
+## Lessons Learned
+
+The value of thorough planning before implementation. Importance of a well-defined design system. Cinematic motion requires careful timing and easing. The profile image is a critical element that must always be visible.
+
+## Future Improvements
+
+- Add internationalization (i18n) support
+- Implement a dark/light theme color picker
+- Add a projects filtering system by technology
+- Create a dedicated blog section for engineering write-ups
+
+## Gallery
+
+![JayFolio V3 Preview](/images/projects/jayfolio-v3.svg)
+
+*Homepage hero section featuring the profile image and large typography.*
+
+## Links
+
+- [GitHub Repository](https://github.com/Andaljc1218/jayfolio)

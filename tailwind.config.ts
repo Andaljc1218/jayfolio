@@ -22,6 +22,19 @@ const config: Config = {
           900: '#171717',
           950: '#0a0a0a',
         },
+        blue: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
+        },
       },
       fontFamily: {
         sans: [
@@ -45,10 +58,40 @@ const config: Config = {
       maxWidth: {
         prose: '768px',
         project: '680px',
+        content: '1200px',
       },
       spacing: {
         '18': '4.5rem',
         '88': '22rem',
+      },
+      animation: {
+        bounce: 'bounce 1s ease-in-out infinite',
+        'bounce-y': 'bounce-y 2s ease-in-out infinite',
+        marquee: 'marquee 30s linear infinite',
+        'marquee-slow': 'marquee 40s linear infinite',
+        'marquee-reverse': 'marquee-reverse 30s linear infinite',
+      },
+      keyframes: {
+        bounce: {
+          '0%, 100%': { transform: 'translateY(-4px)', opacity: '0.6' },
+          '50%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'bounce-y': {
+          '0%, 100%': { transform: 'translateY(0)', opacity: '0.6' },
+          '50%': { transform: 'translateY(-8px)', opacity: '1' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'marquee-reverse': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+      },
+      transitionTimingFunction: {
+        'ease-out': 'ease-out',
+        'ease-in-out': 'ease-in-out',
       },
     },
   },

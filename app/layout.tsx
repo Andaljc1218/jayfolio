@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import ChatButton from '@/components/chat/chat-button';
+import Nav from '@/components/layout/nav';
+import Footer from '@/components/layout/footer';
+import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -61,12 +63,18 @@ export default function RootLayout({
       <head>
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       </head>
-      <body className="min-h-screen" style={{ backgroundColor: 'var(--theme-bg)', color: 'var(--theme-text)' }}>
+      <body className="min-h-screen bg-[var(--theme-bg)] text-[var(--theme-text)] antialiased">
         <a href="#main" className="skip-to-content">
           Skip to content
         </a>
-        <ThemeProvider>{children}</ThemeProvider>
-        <ChatButton />
+        <ThemeProvider>
+          <Nav />
+          <main id="main" className="pt-16">
+            {children}
+          </main>
+          <Footer />
+          <ChatButton />
+        </ThemeProvider>
       </body>
     </html>
   );

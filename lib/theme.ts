@@ -20,9 +20,8 @@ export function applyTheme(theme: 'light' | 'dark') {
 }
 
 export function toggleTheme(current: Theme): Theme {
-  const cycle: Theme[] = ['light', 'dark', 'system'];
-  const idx = cycle.indexOf(current);
-  return cycle[(idx + 1) % cycle.length];
+  if (current === 'system') return 'light';
+  return current === 'light' ? 'dark' : 'light';
 }
 
 export function getThemeLabel(theme: Theme): string {

@@ -4,57 +4,83 @@ description: "A console-based Java flashcard quiz system for learning and self-a
 tech: ["Java", "OOP", "Console"]
 year: "2024"
 status: "Completed"
-github: "https://github.com/Andaljc1218"
+github: "https://github.com/Andaljc1218/flash-q"
 demo: ""
 ---
 
 ## Overview
 
-FLASH-Q is a console-based Java application designed to aid users in learning and self-assessment by creating, managing, and taking quizzes with flashcards.
+FLASH-Q is a console-based Java application designed to aid users in learning and self-assessment by creating, managing, and taking quizzes with flashcards. Built with object-oriented principles, it provides a clean text-based interface for students to study and test their knowledge.
 
 ## Problem
 
-Students need an effective tool for self-assessment and memorization. Existing solutions are often overly complex or lack focus on simplicity.
+Students need an effective tool for self-assessment and memorization. Existing solutions are often overly complex or lack focus on simplicity. A lightweight, focused tool for flashcard-based learning was needed — something that works without a GUI and runs anywhere Java is available.
 
-## My Role
+## Solution
 
-Sole developer. Designed and implemented the entire application using object-oriented principles.
+A console-based application with a clean text interface that allows users to create, edit, and manage flashcard decks, then take randomized quizzes with scoring and performance tracking. Uses object-oriented design with clear separation between data models, storage, and the quiz engine.
 
-## Objectives
+## Key Features
 
-- Create an intuitive flashcard management system
-- Implement quiz generation and scoring
-- Enable persistent storage of flashcard decks
+- **Flashcard Management** — Create, edit, delete, and organize flashcard decks
+- **Quiz Engine** — Generate random quizzes from deck content with multiple question modes
+- **Scoring System** — Real-time scoring with performance analytics
+- **Export/Import** — Save and load deck files for sharing
+- **Session Tracking** — Performance history across quiz sessions
 
-## Tech Stack
+## System Architecture
+
+```
+┌──────────────────────────────────────┐
+│        FLASH-Q Class Structure        │
+├──────────────────────────────────────┤
+│  FlashcardApp (main entry point)      │
+│     │                                │
+│     ├── DeckManager                    │
+│     │   ├── FlashcardDeck             │
+│     │   └── DeckFileHandler           │
+│     │                                │
+│     ├── QuizEngine                     │
+│     │   ├── QuizSession              │
+│     │   └── ScoreTracker             │
+│     │                                │
+│     └── UserInterface                 │
+│         ├── TextRenderer              │
+│         └── InputHandler              │
+└──────────────────────────────────────┘
+```
+
+## Technology Stack
 
 - **Language:** Java
 - **Paradigm:** Object-Oriented Programming
 - **Storage:** File-based serialization
 - **Interface:** Console-based UI
 
-## Features
-
-- Create, edit, and delete flashcard decks
-- Generate random quizzes from deck content
-- Score tracking and performance analytics
-- Export/import deck functionality
-
 ## Development Process
 
-Started with class design and UML diagrams. Implemented core flashcard logic first, then quiz engine, then persistence layer.
+Started with class design and UML diagrams. Implemented core flashcard logic first, then the quiz engine, then persistence layer. Followed a test-driven approach for the matching and scoring algorithms.
 
-## Challenges Faced
+## Challenges
 
-Designing flexible data structures for various flashcard types. Balancing console UI usability with limited interface options.
+Designing flexible data structures for various flashcard types (text, image, multi-choice). Balancing console UI usability with the limited interface options of a terminal. Ensuring the serialization format is both human-readable and machine-parseable.
 
 ## Lessons Learned
 
-Importance of separation of concerns in console applications. Value of iterative testing with real users.
+Importance of separation of concerns in console applications. Value of iterative testing with real users. How to design clean APIs even in a console-based context. The significance of good error handling even in simple applications.
 
-## Screenshots
+## Future Improvements
 
-Coming soon.
+- Add a GUI version using JavaFX or Swing
+- Implement spaced repetition algorithm
+- Add multi-user support with progress tracking
+- Create a web-based version for browser access
+
+## Gallery
+
+![FLASH-Q Interface](/images/projects/flash-q.svg)
+
+*Console interface showing the flashcard quiz in progress.*
 
 ## Links
 

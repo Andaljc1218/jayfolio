@@ -1,98 +1,108 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import { useTheme } from '@/components/theme-provider';
+import { skillCategories } from '@/lib/data';
+import { SectionTitle } from '@/components/ui/section-title';
 
-const skills = {
-  frontend: [
-    'Next.js',
-    'React',
-    'TypeScript',
-    'Tailwind CSS',
-    'Framer Motion',
-    'HTML',
-    'CSS',
-    'JavaScript',
-  ],
-  backend: [
-    'Node.js',
-    'PostgreSQL',
-    'Prisma',
-    'API Routes',
-    'PHP',
-    'MySQL',
-  ],
-  tools: [
-    'Git',
-    'Vercel',
-    'MDX',
-    'Lucide Icons',
-    'Next.js',
-    'XAMPP',
-  ],
-  languages: ['Java', 'TypeScript', 'PHP', 'HTML', 'CSS'],
-};
+interface SkillPillProps {
+  label: string;
+  index: number;
+}
 
-const categories = [
-  { label: 'Frontend', items: skills.frontend },
-  { label: 'Backend', items: skills.backend },
-  { label: 'Tools', items: skills.tools },
-  { label: 'Languages', items: skills.languages },
-];
+function SkillPill({ label, index }: SkillPillProps) {
+  return (
+    <motion.span
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.03 }}
+      className="shrink-0 inline-flex items-center px-5 py-2.5 border text-sm font-mono rounded-full transition-all"
+      style={{
+        borderColor: 'var(--theme-border)',
+        color: 'var(--theme-text-secondary)',
+        backgroundColor: 'var(--theme-bg)',
+      }}
+    >
+      {label}
+    </motion.span>
+  );
+}
 
-export default function SkillsMarquee() {
+function MarqueeRow({
+  items,
+  direction = 'left',
+}: {
+  items: string[];
+  direction?: 'left' | 'right';
+}) {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
 
+  const duration = 25 + items.length * 1.2;
+  const animationClass = direction === 'left' ? 'marquee-left' : 'marquee-right';
+
+  const duplicated = [...items, ...items];
+
   return (
-    <section className="py-16 md:py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        {categories.map((category, catIndex) => (
-          <div key={category.label} className="mb-12 last:mb-0">
-            <h3
-              className="text-xs font-medium uppercase tracking-widest mb-4"
-              style={{ color: isDark ? '#525252' : '#a3a3a3' }}
-            >
-              {category.label}
-            </h3>
-            <div className="relative overflow-hidden">
-              <div
-                className="flex gap-6 animate-marquee"
-                style={{
-                  animationDirection: catIndex % 2 === 0 ? 'normal' : 'reverse',
-                }}
-              >
-                {[...category.items, ...category.items].map((skill, i) => (
-                  <span
-                    key={`${catIndex}-${i}`}
-                    className="shrink-0 inline-flex items-center px-4 py-2 border text-sm font-mono transition-colors"
-                    style={{
-                      borderColor: isDark ? 'rgba(38, 38, 38, 0.5)' : 'rgba(229, 229, 229, 0.5)',
-                      color: isDark ? '#a3a3a3' : '#737373',
-                    }}
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+    <div
+      className="relative group overflow-hidden py-3"
+      style={{
+        maskImage: 'linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent)',
+        WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent)',
+      }}
+    >
+      <motion.div
+        className={`flex gap-5 ${animationClass} group-hover:[animation-play-state=pause]`}
+        style={{
+          animationDuration: `${duration}s`,
+          animationTimingFunction: 'linear',
+          animationIterationCount: 'infinite',
+        }}
+      >
+        {duplicated.map((item, i) => (
+          <SkillPill
+            key={`${item}-${i}`}
+            label={item}
+            index={i}
+          />
         ))}
+      </motion.div>
+    </div>
+  );
+}
+
+export default function SkillsMarquee() {
+  return (
+    <section className="section-padding">
+      <div className="max-width-content mx-auto section-padding-x">
+        <SectionTitle
+          title="Skills"
+          subtitle="The tools and technologies I work with daily."
+        />
+        <div className="mt-12 md:mt-16 space-y-2">
+          {skillCategories.map((category, i) => (
+            <div key={category.label}>
+              <div className="flex items-center gap-3 mb-3">
+                <span
+                  className="text-xs font-medium uppercase tracking-widest"
+                  style={{ color: 'var(--theme-text-muted)' }}
+                >
+                  {category.label}
+                </span>
+                <div
+                  className="flex-1 h-px"
+                  style={{ backgroundColor: 'var(--theme-border)' }}
+                />
+              </div>
+              <MarqueeRow
+                items={category.items}
+                direction={i % 2 === 0 ? 'left' : 'right'}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-        @media (max-width: 768px) {
-          .animate-marquee {
-            animation-duration: 15s;
-          }
-        }
-      `}</style>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { projects } from '@/lib/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://jayfolio.vercel.app';
@@ -8,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/about',
     '/projects',
     '/experience',
+    '/skills',
     '/education',
     '/contact',
     '/resume',
@@ -18,12 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  const projects: MetadataRoute.Sitemap = ['foundit', 'jayfolio-v2', 'eco-map', 'flash-q'].map((slug) => ({
-    url: `${baseUrl}/projects/${slug}`,
+  const projectRoutes: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
 
-  return [...routes, ...projects];
+  return [...routes, ...projectRoutes];
 }

@@ -1,13 +1,5 @@
-import { metadata } from './page';
+import type { ReactNode } from 'react';
 
-export const dynamic = 'force-static';
-
-export { metadata };
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return children;
+export default function ProjectsLayout({ children }: { children: ReactNode }) {
+  return <>{children}</>;
 }

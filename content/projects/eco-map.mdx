@@ -1,60 +1,83 @@
 ---
-title: "Eco-map"
+title: "EcoMap"
 description: "An Environmental Waste Management and Tracking System for efficient waste management and community coordination."
 tech: ["PHP", "HTML", "CSS", "MySQL", "XAMPP"]
 year: "2024"
 status: "Completed"
-github: "https://github.com/Andaljc1218"
+github: "https://github.com/Andaljc1218/eco-map"
 demo: ""
 ---
 
 ## Overview
 
-Eco-map is an Environmental Waste Management and Tracking System. A web-based platform for efficient waste management and community coordination.
+EcoMap is an Environmental Waste Management and Tracking System. A web-based platform for efficient waste management and community coordination, designed for barangay officials and residents to track waste collection and report issues.
 
 ## Problem
 
-Waste management in communities lacks transparency and coordination. Residents and officials struggle to track waste collection schedules and report issues effectively.
+Waste management in communities lacks transparency and coordination. Residents and officials struggle to track waste collection schedules and report issues effectively. Information is siloed in phone calls and physical records, leading to inefficiencies and missed collections.
 
-## My Role
+## Solution
 
-Full-stack developer responsible for frontend, backend, and database implementation.
+A web-based platform that centralizes waste collection schedules, enables issue reporting through a map interface, and provides analytics dashboards for officials. The system uses a traditional PHP MVC pattern with MySQL database and Leaflet.js for interactive maps.
 
-## Objectives
+## Key Features
 
-- Centralize waste collection schedules
-- Enable residents to report issues
-- Provide analytics dashboard for officials
+- **Interactive Waste Map** — Leaflet.js integration for location-based issue reporting
+- **Schedule Tracking** — Calendar view of waste collection schedules
+- **Issue Reporting** — Residents can report problems with photo uploads
+- **Admin Dashboard** — Analytics on collection efficiency and reported issues
+- **Notification System** — SMS reminders for upcoming collection days
 
-## Tech Stack
+## System Architecture
 
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** PHP
-- **Database:** MySQL with XAMPP
-- **Maps:** Leaflet.js for location tracking
+```
+┌──────────────────────────────────────┐
+│            Frontend                   │
+│  HTML5 | CSS3 | JavaScript           │
+│  Leaflet.js for maps                 │
+├──────────────────────────────────────┤
+│            Backend                   │
+│  PHP (MVC Pattern)                   │
+│  XAMPP (Local Server)                │
+├──────────────────────────────────────┤
+│          Database                    │
+│  MySQL                               │
+│  Users | Reports | Schedules         │
+└──────────────────────────────────────┘
+```
 
-## Features
+## Technology Stack
 
-- Interactive waste collection map
-- Issue reporting system
-- Admin dashboard for barangay officials
-- Collection schedule notifications
+- **Frontend:** HTML5, CSS3, JavaScript
+- **Backend:** PHP (MVC)
+- **Database:** MySQL
+- **Server:** XAMPP
+- **Maps:** Leaflet.js
 
 ## Development Process
 
-Built using traditional PHP MVC pattern with MySQL database. Focused on usability for non-technical users.
+Built using traditional PHP MVC pattern with MySQL database. Focused on usability for non-technical users — barangay officials and community residents. Conducted user testing sessions with local community members.
 
-## Challenges Faced
+## Challenges
 
-Integrating real-time map updates without external APIs. Designing intuitive interfaces for diverse user groups.
+Integrating real-time map updates without external APIs. Designing intuitive interfaces for diverse user groups with varying technical literacy. Ensuring the system works reliably on low-bandwidth connections in rural areas.
 
 ## Lessons Learned
 
-Value of simplicity in government/community software. Importance of offline-friendly design for rural areas.
+Value of simplicity in government/community software. Importance of offline-friendly design for rural areas. The critical role of user testing with the actual target demographic. How to balance feature richness with usability.
 
-## Screenshots
+## Future Improvements
 
-Coming soon.
+- Migrate to a Laravel backend for better maintainability
+- Add a mobile-first PWA for offline access
+- Integrate SMS notifications via Twilio
+- Add export functionality for reports
+
+## Gallery
+
+![EcoMap Screenshot](/images/projects/eco-map.svg)
+
+*Interactive map interface showing waste collection zones and reported issues.*
 
 ## Links
 

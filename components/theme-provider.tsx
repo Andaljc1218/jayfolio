@@ -7,10 +7,19 @@ interface ThemeContextValue {
   theme: Theme;
   resolvedTheme: 'light' | 'dark';
   toggleTheme: () => void;
+  setTheme: (theme: Theme) => void;
   label: string;
 }
 
-const ThemeContext = createContext<ThemeContextValue | null>(null);
+const defaultContext: ThemeContextValue = {
+  theme: 'system',
+  resolvedTheme: 'light',
+  toggleTheme: () => {},
+  setTheme: () => {},
+  label: 'System',
+};
+
+const ThemeContext = createContext<ThemeContextValue>(defaultContext);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('system');
@@ -38,6 +47,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const handleToggle = () => {
     const next = toggleTheme(theme);
+    handleSetTheme(next);
+  };
+
+  const handleSetTheme = (next: Theme) => {
+    document.documentElement.classList.add('theme-transitioning');
+    setTimeout(() => {
+      document.documentElement.classList.remove('theme-transitioning');
+    }, 500);
     setTheme(next);
     const resolved = getResolvedTheme(next);
     setResolvedTheme(resolved);
@@ -45,15 +62,16 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('theme', next);
   };
 
+  const value = {
+    theme,
+    resolvedTheme,
+    toggleTheme: handleToggle,
+    setTheme: handleSetTheme,
+    label: getThemeLabel(theme),
+  };
+
   return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        resolvedTheme,
-        toggleTheme: handleToggle,
-        label: getThemeLabel(theme),
-      }}
-    >
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );

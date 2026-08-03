@@ -14,49 +14,72 @@ FoundIT is a job matching platform designed to connect students with internship 
 
 ## Problem
 
-Students often struggle to find relevant internship opportunities scattered across multiple platforms. Employers face difficulty reaching qualified candidates early in their careers.
+Students often struggle to find relevant internship opportunities scattered across multiple platforms. Employers face difficulty reaching qualified candidates early in their careers. The traditional job board model doesn't cater specifically to students' unique needs — they need mentorship, flexible hours, and learning-focused roles.
 
-## My Role
+## Solution
 
-Sole developer responsible for full-stack implementation, database design, and deployment.
+FoundIT centralizes student-friendly opportunities in one place, with a matching algorithm that considers skills, location, and availability. The platform provides tailored dashboards for both students and employers, with built-in application tracking and communication tools.
 
-## Objectives
+## Key Features
 
-- Create a centralized platform for student job seekers
-- Enable employers to post and manage opportunities
-- Implement matching algorithm based on skills and preferences
+- **User Authentication** — Role-based access for students, employers, and admins
+- **Job Matching Algorithm** — Skill-based matching with preference ranking
+- **Application Dashboard** — Track applications, deadlines, and interview schedules
+- **Employer Profiles** — Company information, culture, and opportunity listings
+- **Responsive Design** — Optimized for mobile and desktop workflows
 
-## Tech Stack
+## System Architecture
 
-- **Frontend:** Next.js 15, TypeScript, Tailwind CSS
-- **Backend:** Next.js API Routes
+```
+┌─────────────────────────────────────────┐
+│           Frontend (Next.js)            │
+│  React Server Components | Tailwind CSS │
+└──────────┬──────────────────────────────┘
+           │  HTTPS / REST API
+┌──────────▼──────────────────────────────┐
+│        Backend (Next.js API Routes)     │
+│   Auth | Validation | Business Logic     │
+└──────────┬──────────────────────────────┘
+           │  Prisma ORM
+┌──────────▼──────────────────────────────┐
+│     Database (PostgreSQL)               │
+│  Users | Jobs | Applications | Matching  │
+└─────────────────────────────────────────┘
+```
+
+## Technology Stack
+
+- **Framework:** Next.js 15 (App Router, Server Components)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
 - **Database:** PostgreSQL with Prisma ORM
 - **Authentication:** NextAuth.js
 - **Deployment:** Vercel
 
-## Features
-
-- User authentication for students and employers
-- Job posting and management dashboard
-- Skill-based matching algorithm
-- Application tracking system
-- Responsive design for mobile and desktop
-
 ## Development Process
 
-Started with requirement gathering and database schema design. Built authentication first, then core job listing features, followed by the matching algorithm.
+Started with requirement gathering and database schema design. Built authentication first, then core job listing features, followed by the matching algorithm. Used a feature-branch workflow with code reviews.
 
-## Challenges Faced
+## Challenges
 
-Designing an effective matching algorithm that balanced relevance with diversity of results. Optimizing database queries for large datasets.
+Designing an effective matching algorithm that balanced relevance with diversity of results. Optimizing database queries for large datasets. Implementing real-time notifications for application status changes.
 
 ## Lessons Learned
 
-Importance of iterating on algorithms with real user data. Value of clean database schema design for maintainability.
+Importance of iterating on algorithms with real user data. Value of clean database schema design for maintainability. The significance of accessibility in application interfaces for users with disabilities.
 
-## Screenshots
+## Future Improvements
 
-Coming soon.
+- Implement real-time chat between students and employers
+- Add a mobile app with React Native
+- Integrate with LinkedIn for profile import
+- Add AI-powered resume feedback
+
+## Gallery
+
+![FoundIT Dashboard](/images/projects/foundit.svg)
+
+*Dashboard showing job listings with the matching algorithm results.*
 
 ## Links
 
