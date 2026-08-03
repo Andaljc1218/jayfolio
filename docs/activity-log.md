@@ -78,3 +78,5 @@
 - `18cd44c` — build: ESLint v10 flat config + lint-staged fix
 - `55a797f` — refactor(v4): compressed hero, simplified about/contact/skills
 - `16d116c` — refactor(v4): dark theme palette, restore accent, restore contact form
+- `a59a603` — fix: remove all blue accents — pure monochrome
+- `8666656` — docs: update activity log for V4 final state
