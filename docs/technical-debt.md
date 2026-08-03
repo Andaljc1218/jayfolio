@@ -40,3 +40,27 @@
 - **Fix:** Either use frontmatter as the source of truth, or remove it from MDX files.
 - **Priority:** Low
 - **Date:** 2026-08-03
+
+## V4 Items
+
+### 1. Project Case Study Pages Not Yet Rewritten to Product Style
+- **File:** `app/projects/[slug]/page.tsx`
+- **Description:** V4 spec calls for product-style case study pages (hero image, subtitle, tech icons, features checklist, gallery slider, challenges, lessons learned). Currently uses MDX-based content rendering.
+- **Impact:** Case study pages don't match V4 spec yet.
+- **Priority:** Medium
+- **Date:** 2026-08-03
+
+### 2. Tech Icons Are Placeholder SVGs
+- **File:** `components/ui/icons.tsx`
+- **Description:** Tech icons are simple SVG placeholders, not official brand logos. They use `fill="currentColor"` so they inherit the text color.
+- **Impact:** Icons render as monochrome shapes rather than recognizable brand logos.
+- **Fix:** Replace with official SVG icons for each technology (e.g., React atom, Next.js symbol, etc.)
+- **Priority:** Low
+- **Date:** 2026-08-03
+
+### 3. Profile Rotation Images Missing
+- **File:** `components/sections/hero.tsx`
+- **Description:** Profile image rotation references `profile-2.jpg` and `profile-3.jpg` which don't exist in `public/images/`. Only `profile.jpg` is available.
+- **Fix:** Add additional profile images to `public/images/`.
+- **Priority:** Medium
+- **Date:** 2026-08-03
