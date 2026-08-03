@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useTheme } from '@/components/theme-provider';
-import { Badge } from '@/components/ui/badge';
+import { motion } from "framer-motion";
+import { useTheme } from "@/components/theme-provider";
+import { Badge } from "@/components/ui/badge";
 
 interface TimelineItem {
   period: string;
   title: string;
   subtitle?: string;
   location?: string;
-  details: { type: 'text'; content: string }[];
+  details: { type: "text"; content: string }[];
   tags?: string[];
 }
 
@@ -19,24 +19,28 @@ interface TimelineProps {
 
 export function Timeline({ items }: TimelineProps) {
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === 'dark';
+  const isDark = resolvedTheme === "dark";
 
-  const lineColor = isDark ? 'rgba(59, 130, 246, 0.3)' : 'rgba(37, 99, 235, 0.2)';
-  const dotColor = isDark ? '#3b82f6' : '#2563eb';
-  const textColor = isDark ? '#fafafa' : '#181818';
-  const secondaryColor = isDark ? '#a0a0a0' : '#525252';
-  const mutedColor = isDark ? '#666666' : '#999999';
-  const borderColor = isDark ? 'rgba(34, 34, 34, 0.5)' : 'rgba(224, 224, 220, 0.5)';
+  const lineColor = isDark
+    ? "rgba(212, 212, 212, 0.3)"
+    : "rgba(51, 51, 51, 0.15)";
+  const dotColor = isDark ? "#d4d4d4" : "#333333";
+  const textColor = isDark ? "#fafafa" : "#181818";
+  const secondaryColor = isDark ? "#a0a0a0" : "#525252";
+  const mutedColor = isDark ? "#666666" : "#999999";
+  const borderColor = isDark
+    ? "rgba(34, 34, 34, 0.5)"
+    : "rgba(224, 224, 220, 0.5)";
 
   return (
     <div className="relative">
       <motion.div
         className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px"
         style={{ backgroundColor: lineColor }}
-        initial={{ scaleY: 0, transformOrigin: 'top' }}
+        initial={{ scaleY: 0, transformOrigin: "top" }}
         whileInView={{ scaleY: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 1, ease: 'easeOut', delay: 0.1 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
       />
       {items.map((item, index) => (
         <motion.div
@@ -49,7 +53,7 @@ export function Timeline({ items }: TimelineProps) {
         >
           <motion.div
             className="absolute top-0 w-3 h-3 rounded-full"
-            style={{ left: 'calc(-6px + 1px)', backgroundColor: dotColor }}
+            style={{ left: "calc(-6px + 1px)", backgroundColor: dotColor }}
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -57,10 +61,7 @@ export function Timeline({ items }: TimelineProps) {
           />
           <div className="md:ml-auto md:w-1/2 md:pl-8">
             <div className="md:text-right">
-              <time
-                className="text-sm font-mono"
-                style={{ color: mutedColor }}
-              >
+              <time className="text-sm font-mono" style={{ color: mutedColor }}>
                 {item.period}
               </time>
               <h3
@@ -70,18 +71,12 @@ export function Timeline({ items }: TimelineProps) {
                 {item.title}
               </h3>
               {item.subtitle && (
-                <p
-                  className="text-base mt-1"
-                  style={{ color: secondaryColor }}
-                >
+                <p className="text-base mt-1" style={{ color: secondaryColor }}>
                   {item.subtitle}
                 </p>
               )}
               {item.location && (
-                <p
-                  className="text-sm mt-0.5"
-                  style={{ color: mutedColor }}
-                >
+                <p className="text-sm mt-0.5" style={{ color: mutedColor }}>
                   {item.location}
                 </p>
               )}
