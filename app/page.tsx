@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
-import { motion } from 'framer-motion';
-import HeroSection from '@/components/sections/hero';
-import AboutSection from '@/components/sections/about';
-import SkillsMarquee from '@/components/sections/skills-marquee';
-import ProjectGrid from '@/components/project/project-grid';
-import { Timeline } from '@/components/ui/timeline';
-import { SectionTitle } from '@/components/ui/section-title';
-import { Button } from '@/components/ui/button';
-import { experiences } from '@/lib/data';
-import { educationData } from '@/lib/data';
-import { fadeInUp, staggerContainer } from '@/lib/animations';
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import HeroSection from "@/components/sections/hero";
+import AboutSection from "@/components/sections/about";
+import SkillsSection from "@/components/sections/skills";
+import ProjectGrid from "@/components/project/project-grid";
+import { Timeline } from "@/components/ui/timeline";
+import { SectionTitle } from "@/components/ui/section-title";
+import { Button } from "@/components/ui/button";
+import { experiences } from "@/lib/data";
+import { educationData } from "@/lib/data";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 export default function Home() {
   const experienceItems = experiences.map((exp) => ({
@@ -20,8 +20,11 @@ export default function Home() {
     title: exp.title,
     subtitle: exp.company,
     location: exp.location,
-    tags: ['Laravel', 'PHP', 'Git'],
-    details: exp.responsibilities.map((r) => ({ type: 'text' as const, content: r })),
+    tags: ["Laravel", "PHP", "Git"],
+    details: exp.responsibilities.map((r) => ({
+      type: "text" as const,
+      content: r,
+    })),
   }));
 
   const educationItems = educationData.map((edu) => ({
@@ -30,8 +33,11 @@ export default function Home() {
     subtitle: edu.school,
     location: edu.location,
     details: [
-      ...edu.coursework.map((c) => ({ type: 'text' as const, content: `Coursework: ${c}` })),
-      ...(edu.awards?.map((a) => ({ type: 'text' as const, content: `Award: ${a}` })) || []),
+      { type: "text" as const, content: "Expected Graduation: 2027" },
+      ...(edu.awards?.map((a) => ({
+        type: "text" as const,
+        content: `Award: ${a}`,
+      })) || []),
     ],
   }));
 
@@ -89,7 +95,7 @@ export default function Home() {
         </div>
       </section>
 
-      <SkillsMarquee />
+      <SkillsSection />
 
       <section id="education" className="section-padding">
         <div className="max-width-content mx-auto section-padding-x">
@@ -110,23 +116,26 @@ export default function Home() {
             viewport={{ once: true, amount: 0.1 }}
             variants={{
               hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+              },
             }}
           >
             <motion.h2
               className="text-3xl md:text-4xl font-bold tracking-tight mb-4"
-              style={{ color: 'var(--theme-text)' }}
+              style={{ color: "var(--theme-text)" }}
               variants={fadeInUp}
             >
               Let&apos;s Build Something Together
             </motion.h2>
             <motion.p
               className="text-lg leading-relaxed mb-8"
-              style={{ color: 'var(--theme-text-secondary)' }}
+              style={{ color: "var(--theme-text-secondary)" }}
               variants={fadeInUp}
             >
-              I&apos;m always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision.
+              I&apos;m always open to discussing new projects, creative ideas,
+              or opportunities to be part of your vision.
             </motion.p>
             <motion.div variants={fadeInUp}>
               <Link href="/contact">
@@ -143,27 +152,27 @@ export default function Home() {
               <a
                 href="mailto:jayceeja12@gmail.com"
                 className="hover:text-[var(--theme-accent)] transition-colors"
-                style={{ color: 'var(--theme-text-secondary)' }}
+                style={{ color: "var(--theme-text-secondary)" }}
               >
                 jayceeja12@gmail.com
               </a>
-              <span style={{ color: 'var(--theme-border)' }}>|</span>
+              <span style={{ color: "var(--theme-border)" }}>|</span>
               <a
                 href="https://github.com/Andaljc1218"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[var(--theme-accent)] transition-colors"
-                style={{ color: 'var(--theme-text-secondary)' }}
+                style={{ color: "var(--theme-text-secondary)" }}
               >
                 GitHub
               </a>
-              <span style={{ color: 'var(--theme-border)' }}>|</span>
+              <span style={{ color: "var(--theme-border)" }}>|</span>
               <a
                 href="https://linkedin.com/in/jaycee-andal"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[var(--theme-accent)] transition-colors"
-                style={{ color: 'var(--theme-text-secondary)' }}
+                style={{ color: "var(--theme-text-secondary)" }}
               >
                 LinkedIn
               </a>

@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { FileText, Briefcase, GraduationCap } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useTheme } from '@/components/theme-provider';
-import { SectionTitle } from '@/components/ui/section-title';
-import { site } from '@/lib/constants';
-import { experiences } from '@/lib/data';
-import { educationData } from '@/lib/data';
-import { staggerContainer, fadeInUp } from '@/lib/animations';
+import { FileText, Briefcase, GraduationCap } from "lucide-react";
+import { motion } from "framer-motion";
+import { useTheme } from "@/components/theme-provider";
+import { SectionTitle } from "@/components/ui/section-title";
+import { site } from "@/lib/constants";
+import { experiences } from "@/lib/data";
+import { educationData } from "@/lib/data";
+import { staggerContainer, fadeInUp } from "@/lib/animations";
 
 const item = fadeInUp;
 const container = staggerContainer;
@@ -33,7 +33,7 @@ export default function ResumePage() {
               href={site.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-[var(--theme-accent)] text-[var(--theme-bg)] rounded-[var(--btn-radius)] transition-all hover:scale-105 hover:shadow-lg"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-[var(--theme-text)] text-[var(--theme-bg)] rounded-[var(--btn-radius)] transition-all hover:scale-105 hover:shadow-lg"
             >
               <FileText size={16} />
               Download Resume
@@ -42,7 +42,7 @@ export default function ResumePage() {
           <motion.div variants={item}>
             <a
               href="/experience"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium border border-[var(--theme-border)] text-[var(--theme-text)] rounded-[var(--btn-radius)] transition-all hover:border-[var(--theme-accent)] hover:text-[var(--theme-accent)] hover:bg-[var(--theme-surface-elevated)]"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium border border-[var(--theme-border)] text-[var(--theme-text)] rounded-[var(--btn-radius)] transition-all"
             >
               <Briefcase size={16} />
               View Experience
@@ -51,7 +51,7 @@ export default function ResumePage() {
           <motion.div variants={item}>
             <a
               href="/education"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium border border-[var(--theme-border)] text-[var(--theme-text)] rounded-[var(--btn-radius)] transition-all hover:border-[var(--theme-accent)] hover:text-[var(--theme-accent)] hover:bg-[var(--theme-surface-elevated)]"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium border border-[var(--theme-border)] text-[var(--theme-text)] rounded-[var(--btn-radius)] transition-all"
             >
               <GraduationCap size={16} />
               View Education
@@ -69,15 +69,15 @@ export default function ResumePage() {
           <motion.div variants={item}>
             <h2
               className="text-xl font-semibold mb-6 flex items-center gap-2"
-              style={{ color: 'var(--theme-text)' }}
+              style={{ color: "var(--theme-text)" }}
             >
-              <Briefcase size={18} style={{ color: 'var(--theme-accent)' }} />
+              <Briefcase
+                size={18}
+                style={{ color: "var(--theme-text-secondary)" }}
+              />
               Work Experience
             </h2>
-            <motion.div
-              variants={container}
-              className="space-y-8"
-            >
+            <motion.div variants={container} className="space-y-8">
               {experiences.map((exp, i) => (
                 <motion.div
                   key={exp.title}
@@ -91,17 +91,29 @@ export default function ResumePage() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <div className="flex justify-between items-baseline mb-2">
-                    <h3 className="text-lg font-medium" style={{ color: 'var(--theme-text)' }}>
+                    <h3
+                      className="text-lg font-medium"
+                      style={{ color: "var(--theme-text)" }}
+                    >
                       {exp.title}
                     </h3>
-                    <time className="text-sm font-mono" style={{ color: 'var(--theme-text-muted)' }}>
+                    <time
+                      className="text-sm font-mono"
+                      style={{ color: "var(--theme-text-muted)" }}
+                    >
                       {exp.period}
                     </time>
                   </div>
-                  <p style={{ color: 'var(--theme-text-secondary)' }}>{exp.company} · {exp.location}</p>
+                  <p style={{ color: "var(--theme-text-secondary)" }}>
+                    {exp.company} · {exp.location}
+                  </p>
                   <ul className="mt-3 space-y-1.5">
                     {exp.responsibilities.map((r) => (
-                      <li key={r} className="text-sm" style={{ color: 'var(--theme-text-secondary)' }}>
+                      <li
+                        key={r}
+                        className="text-sm"
+                        style={{ color: "var(--theme-text-secondary)" }}
+                      >
                         • {r}
                       </li>
                     ))}
@@ -114,15 +126,15 @@ export default function ResumePage() {
           <motion.div variants={item}>
             <h2
               className="text-xl font-semibold mb-6 flex items-center gap-2"
-              style={{ color: 'var(--theme-text)' }}
+              style={{ color: "var(--theme-text)" }}
             >
-              <GraduationCap size={18} style={{ color: 'var(--theme-accent)' }} />
+              <GraduationCap
+                size={18}
+                style={{ color: "var(--theme-text-secondary)" }}
+              />
               Education
             </h2>
-            <motion.div
-              variants={container}
-              className="space-y-8"
-            >
+            <motion.div variants={container} className="space-y-8">
               {educationData.map((edu, i) => (
                 <motion.div
                   key={edu.degree}
@@ -136,17 +148,28 @@ export default function ResumePage() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <div className="flex justify-between items-baseline mb-2">
-                    <h3 className="text-lg font-medium" style={{ color: 'var(--theme-text)' }}>
+                    <h3
+                      className="text-lg font-medium"
+                      style={{ color: "var(--theme-text)" }}
+                    >
                       {edu.degree}
                     </h3>
-                    <time className="text-sm font-mono" style={{ color: 'var(--theme-text-muted)' }}>
+                    <time
+                      className="text-sm font-mono"
+                      style={{ color: "var(--theme-text-muted)" }}
+                    >
                       {edu.period}
                     </time>
                   </div>
-                  <p style={{ color: 'var(--theme-text-secondary)' }}>{edu.school} · {edu.location}</p>
+                  <p style={{ color: "var(--theme-text-secondary)" }}>
+                    {edu.school} · {edu.location}
+                  </p>
                   {edu.coursework.length > 0 && (
                     <div className="mt-3">
-                      <span className="text-xs font-medium" style={{ color: 'var(--theme-text-muted)' }}>
+                      <span
+                        className="text-xs font-medium"
+                        style={{ color: "var(--theme-text-muted)" }}
+                      >
                         Relevant Coursework:
                       </span>
                       <div className="flex flex-wrap gap-1.5 mt-1.5">
@@ -155,8 +178,8 @@ export default function ResumePage() {
                             key={c}
                             className="text-xs px-2.5 py-1 border rounded-full"
                             style={{
-                              borderColor: 'var(--theme-border)',
-                              color: 'var(--theme-text-secondary)',
+                              borderColor: "var(--theme-border)",
+                              color: "var(--theme-text-secondary)",
                             }}
                           >
                             {c}

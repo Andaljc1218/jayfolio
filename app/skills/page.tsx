@@ -1,9 +1,9 @@
-import SkillsMarquee from '@/components/sections/skills-marquee';
+import SkillsSection from "@/components/sections/skills";
 
 export const metadata = {
-  title: 'Skills',
+  title: "Skills",
 };
 
 export default function SkillsPage() {
-  return <SkillsMarquee />;
+  return <SkillsSection />;
 }

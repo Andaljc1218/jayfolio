@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from '@/components/theme-provider';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
-import { navLinks } from '@/lib/constants';
+import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/components/theme-provider";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { navLinks } from "@/lib/constants";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { resolvedTheme } = useTheme();
   const pathname = usePathname();
-  const isDark = resolvedTheme === 'dark';
+  const isDark = resolvedTheme === "dark";
 
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
@@ -23,15 +23,15 @@ export default function Nav() {
       setScrolled(window.scrollY > 20);
     };
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    if (pathname !== '/') return;
+    if (pathname !== "/") return;
 
     const sections = navLinks
-      .filter((link) => link.href !== '/about')
+      .filter((link) => link.href !== "/about")
       .map((link) => {
         const id = link.href.slice(1);
         const el = document.getElementById(id);
@@ -54,30 +54,38 @@ export default function Nav() {
     };
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
 
-  const isExternal = pathname !== '/';
+  const isExternal = pathname !== "/";
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled || isExternal ? 'backdrop-blur-md border-b' : 'bg-transparent'
+          scrolled || isExternal
+            ? "border-b"
+            : "bg-transparent border-transparent"
         }`}
         style={{
-          backgroundColor: scrolled || isExternal
-            ? isDark ? 'rgba(10, 10, 10, 0.85)' : 'rgba(246, 246, 244, 0.85)'
-            : 'transparent',
-          borderColor: isDark ? 'rgba(34, 34, 34, 0.5)' : 'rgba(224, 224, 220, 0.5)',
+          backgroundColor:
+            scrolled || isExternal
+              ? isDark
+                ? "rgba(10, 10, 10, 0.8)"
+                : "rgba(246, 246, 244, 0.8)"
+              : "transparent",
+          borderColor: isDark
+            ? "rgba(34, 34, 34, 0.3)"
+            : "rgba(224, 224, 220, 0.5)",
+          backdropFilter: scrolled || isExternal ? "blur(12px)" : "none",
         }}
       >
         <nav className="max-width-content mx-auto section-padding-x h-16 flex items-center justify-between">
           <Link
             href="/"
             className="text-sm font-medium tracking-tight transition-colors"
-            style={{ color: isDark ? '#fafafa' : '#181818' }}
+            style={{ color: isDark ? "#fafafa" : "#181818" }}
           >
             Jaycee Andal
           </Link>
@@ -88,25 +96,29 @@ export default function Nav() {
                 ? pathname === link.href
                 : activeSection === link.href.slice(1);
               return (
-                <li key={link.href}>
+                <li key={link.href} className="relative">
                   <Link
                     href={link.href}
                     className="text-sm transition-all duration-200"
                     style={{
                       color: isActive
-                        ? isDark ? '#3b82f6' : '#2563eb'
-                        : isDark ? '#a0a0a0' : '#525252',
+                        ? isDark
+                          ? "#fafafa"
+                          : "#181818"
+                        : isDark
+                          ? "#a0a0a0"
+                          : "#525252",
                     }}
                   >
                     {link.label}
-                    {isActive && (
-                      <motion.span
-                        layoutId="active-underline"
-                        className="absolute bottom-0 left-0 w-full h-0.5"
-                        style={{ backgroundColor: isDark ? '#3b82f6' : '#2563eb' }}
-                      />
-                    )}
                   </Link>
+                  {isActive && (
+                    <motion.span
+                      layoutId="active-underline-nav"
+                      className="absolute bottom-[-6px] left-0 right-0 h-0.5"
+                      style={{ backgroundColor: "var(--theme-text)" }}
+                    />
+                  )}
                 </li>
               );
             })}
@@ -123,7 +135,7 @@ export default function Nav() {
               className="md:hidden p-2"
               onClick={() => setIsOpen(true)}
               aria-label="Open menu"
-              style={{ color: isDark ? '#fafafa' : '#181818' }}
+              style={{ color: isDark ? "#fafafa" : "#181818" }}
             >
               <Menu size={20} />
             </button>
@@ -139,8 +151,10 @@ export default function Nav() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 md:hidden"
             style={{
-              backgroundColor: isDark ? 'rgba(10, 10, 10, 0.96)' : 'rgba(246, 246, 244, 0.96)',
-              backdropFilter: 'blur(12px)',
+              backgroundColor: isDark
+                ? "rgba(10, 10, 10, 0.96)"
+                : "rgba(246, 246, 244, 0.96)",
+              backdropFilter: "blur(12px)",
             }}
           >
             <div className="flex flex-col h-full section-padding-x pt-20">
@@ -148,7 +162,7 @@ export default function Nav() {
                 onClick={() => setIsOpen(false)}
                 className="self-end p-2 mb-8"
                 aria-label="Close menu"
-                style={{ color: isDark ? '#fafafa' : '#181818' }}
+                style={{ color: isDark ? "#fafafa" : "#181818" }}
               >
                 <X size={24} />
               </button>
@@ -164,7 +178,7 @@ export default function Nav() {
                       href={link.href}
                       onClick={() => setIsOpen(false)}
                       className="text-2xl transition-colors"
-                      style={{ color: isDark ? '#fafafa' : '#181818' }}
+                      style={{ color: isDark ? "#fafafa" : "#181818" }}
                     >
                       {link.label}
                     </Link>

@@ -1,54 +1,94 @@
-'use client';
+"use client";
 
-import { motion, type Transition } from 'framer-motion';
-import Link from 'next/link';
-import { useTheme } from '@/components/theme-provider';
-import { site } from '@/lib/constants';
-import { fadeInUpDelay, staggerContainerHero, floatTween, floatTransition } from '@/lib/animations';
+import { motion, type Variants } from "framer-motion";
+import Link from "next/link";
+import { useTheme } from "@/components/theme-provider";
+import { site } from "@/lib/constants";
+import { fadeInUpDelay, staggerContainerHero } from "@/lib/animations";
+import { useState, useEffect, useCallback } from "react";
 
 const item = fadeInUpDelay;
 const container = staggerContainerHero;
 
+const profileImages = [
+  "/images/profile.jpg",
+  "/images/profile-2.jpg",
+  "/images/profile-3.jpg",
+];
+
+const playerStats = [
+  { label: "LEVEL", value: "03" },
+  { label: "ROLE", value: "FULL STACK" },
+  { label: "XP", value: "80%" },
+  { label: "PROJECTS", value: "12+" },
+  { label: "TECH", value: "18+" },
+  { label: "COFFEE", value: "∞" },
+];
+
+const heroItem: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
 export default function HeroSection() {
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === 'dark';
-  const glowColor = isDark ? 'rgba(59, 130, 246, 0.35)' : 'rgba(37, 99, 235, 0.15)';
+  const isDark = resolvedTheme === "dark";
+
+  const [imgIndex, setImgIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setImgIndex((prev) => (prev + 1) % profileImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextImage = useCallback(() => {
+    setImgIndex((prev) => (prev + 1) % profileImages.length);
+  }, []);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center py-20">
+    <section id="hero" className="min-h-[75vh] flex items-center py-12">
       <div className="max-width-content mx-auto section-padding-x w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="visible"
-            className="text-left"
-          >
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center"
+        >
+          <motion.div className="text-left" variants={heroItem}>
             <motion.p
-              variants={item}
-              className="text-sm font-medium tracking-wider uppercase mb-4"
-              style={{ color: 'var(--theme-accent)' }}
+              variants={heroItem}
+              className="text-sm font-mono tracking-wider uppercase mb-6"
+              style={{ color: "var(--theme-text-muted)" }}
             >
               {site.title}
             </motion.p>
 
             <motion.h1
-              variants={item}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter mb-6"
-              style={{ color: 'var(--theme-text)' }}
+              variants={heroItem}
+              className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6"
+              style={{ color: "var(--theme-text)" }}
             >
               Jaycee Andal
             </motion.h1>
 
             <motion.p
-              variants={item}
-              className="text-lg md:text-xl leading-relaxed max-w-lg mb-8"
-              style={{ color: 'var(--theme-text-secondary)' }}
+              variants={heroItem}
+              className="text-lg md:text-xl leading-relaxed max-w-md mb-8"
+              style={{ color: "var(--theme-text-secondary)" }}
             >
               {site.description}
             </motion.p>
 
-            <motion.div variants={item} className="flex flex-wrap gap-4 mb-16">
+            <motion.div
+              variants={heroItem}
+              className="flex flex-wrap gap-4 mb-12"
+            >
               <Link href="/projects">
                 <motion.button
                   whileHover={{ scale: 1.02, y: -1 }}
@@ -64,68 +104,63 @@ export default function HeroSection() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-6 py-3 text-sm font-medium border border-[var(--theme-border)] text-[var(--theme-text)] rounded-[var(--btn-radius)] transition-all hover:border-[var(--theme-accent)] hover:text-[var(--theme-accent)] hover:bg-[var(--theme-surface-elevated)]"
+                className="px-6 py-3 text-sm font-medium border border-[var(--theme-border)] text-[var(--theme-text)] rounded-[var(--btn-radius)] transition-all"
               >
                 Download Resume
               </motion.a>
             </motion.div>
 
             <motion.div
-              variants={item}
-              className="cursor-pointer"
-              animate={floatTween}
-              transition={floatTransition}
+              variants={heroItem}
+              className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs font-mono"
+              style={{ color: "var(--theme-text-muted)" }}
             >
-              <span
-                className="text-xs font-mono tracking-widest uppercase"
-                style={{ color: 'var(--theme-text-muted)' }}
-              >
-                Scroll
-              </span>
-              <div className="mt-2 w-5 h-8 border border-[var(--theme-border)] rounded-full flex justify-center">
-                <motion.div
-                  className="w-1 h-2 rounded-full mt-1"
-                  style={{ backgroundColor: 'var(--theme-text-muted)' }}
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-              </div>
+              {playerStats.map((stat) => (
+                <div key={stat.label} className="flex flex-col">
+                  <span style={{ color: "var(--theme-text-muted)" }}>
+                    {stat.label}
+                  </span>
+                  <span
+                    className="font-semibold"
+                    style={{ color: "var(--theme-text)" }}
+                  >
+                    {stat.value}
+                  </span>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
 
           <motion.div
-            variants={item}
+            variants={heroItem}
             className="flex justify-center lg:justify-end"
           >
-            <motion.div
-              animate={floatTween}
-              transition={floatTransition}
-              className="relative group"
+            <motion.button
+              onClick={nextImage}
+              className="relative group cursor-pointer"
+              whileHover={{ scale: 1.02 }}
             >
               <motion.div
-                className="w-64 h-64 sm:w-72 sm:h-72 rounded-[var(--card-radius)] overflow-hidden transition-all duration-500"
+                key={imgIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-[var(--card-radius)] overflow-hidden"
                 style={{
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
-                  border: '1px solid var(--theme-border)',
+                  border: "1px solid var(--theme-border)",
                 }}
-                whileHover={{ scale: 1.02 }}
               >
                 <img
-                  src="/images/profile.jpg"
-                  alt="Jaycee Andal"
-                  className="w-full h-full object-cover grayscale opacity-90 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100"
+                  src={profileImages[imgIndex]}
+                  alt={`Jaycee Andal — ${imgIndex + 1}`}
+                  className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
                   loading="eager"
                 />
-                <motion.div
-                  className="absolute inset-0 rounded-[var(--card-radius)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    boxShadow: `0 0 40px ${glowColor}`,
-                  }}
-                />
               </motion.div>
-            </motion.div>
+            </motion.button>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
